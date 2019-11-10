@@ -1,0 +1,51 @@
+
+.content{
+    position: static;
+    width: 100%;
+    height: 100%;
+    background-image: url('../../assets/imagenes/fondo-login.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    
+  }
+
+  
+.login{
+      position: flex;
+      //justify-items: center;
+      justify-content: center;
+      align-items: center;
+      margin: auto;
+      
+      width: 80%;
+      height: 40%;
+      background-color: rgba($color: rgb(6, 7, 8), $alpha: 0.6);
+      
+  }
+  
+  
+  ion-item.input{
+      --background:transparent;
+      width:227px;
+      font-size: 13px;
+      margin-top:10%;
+      color:white;
+  }
+
+  .buttonIngresar ion-button{
+    
+    margin: auto;
+    padding: auto;
+    width: 200px;
+  }
+
+  .btn-usuarios{
+    position: absolute;
+    margin-top:5%;
+    //justify-items: center;
+    //justify-content: center;
+    //align-items: ;
+    //margin: auto;
+  }
+  

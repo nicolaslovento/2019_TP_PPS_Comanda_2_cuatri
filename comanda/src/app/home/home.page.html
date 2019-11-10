@@ -1,0 +1,41 @@
+<div class="content" >
+
+
+  <div  class="login" >
+
+    <ion-item class="input">
+      <ion-label  position="floating"  color-text="black">DNI</ion-label>
+      <ion-input  clear-input="true" type="number" name="dni" [(ngModel)]="dni"></ion-input>
+    </ion-item>
+
+    <ion-item class="input">
+      <ion-label position="floating" >CLAVE</ion-label>
+      <ion-input clear-input="true" type="password" name="clave" [(ngModel)]="clave" ></ion-input>
+    </ion-item>
+    <br><br><br>
+    <div class="buttonIngresar">
+      <ion-button shape="round"  expand="block" (click)="login()" color="primary">Ingresar</ion-button>
+    </div>
+
+  </div>
+
+  
+  <div align="center" class="btn-usuarios">
+      <ion-button (click)="cargarUsuario(1)" color="primary">Supervisor</ion-button>
+      <ion-button (click)="cargarUsuario(2)" color="success">Dueño</ion-button>
+      <ion-button (click)="cargarUsuario(3)" color="secondary">Mozo</ion-button>
+      <ion-button (click)="cargarUsuario(4)" color="warning">Cocinero</ion-button>
+      <ion-button (click)="cargarUsuario(5)" color="danger">Bartender</ion-button>
+      <ion-button (click)="cargarUsuario(8)" color="light">Metre</ion-button>
+      <br>
+      <ion-button (click)="cargarUsuario(6)" color="medium">Cliente Registrado</ion-button>
+      <ion-button (click)="cargarUsuario(7)" color="dark">Cliente Anonimo</ion-button>
+      <br>
+      <ion-button (click)="cargarUsuario(9)" color="success">Alta de Cliente</ion-button>
+      <ion-button (click)="cargarUsuario(10)" color="success">Alta de Cliente Anónimo</ion-button>
+  </div>
+
+
+    
+</div>
+

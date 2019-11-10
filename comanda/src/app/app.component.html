@@ -1,0 +1,16 @@
+<ion-app>
+    <div *ngIf="this.showSplash" class="splash">
+      <div class="spinner" [ngClass]="{
+        'spinner-landscape': this.platform.isLandscape(),
+        'spinner-portrait': !this.platform.isLandscape()
+        }"><img src="../assets/imagenes/splash-sin-logo.png">
+      </div>
+      <div  [ngClass]="{
+        'spinner-landscape': this.platform.isLandscape(),
+        'spinner-portrait': !this.platform.isLandscape()
+        }">
+        <img class="rotate-scale-up" src="../assets/imagenes/logo.png" width="140xp" height="140x">
+      </div>
+    </div>
+    <ion-router-outlet></ion-router-outlet>
+  </ion-app>

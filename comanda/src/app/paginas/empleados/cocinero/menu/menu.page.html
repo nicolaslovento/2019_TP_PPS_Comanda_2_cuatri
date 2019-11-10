@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-buttons slot="end">
+      <ion-button  color="danger" (click)="cerrarSesion()"><ion-label>Cerrar<br>sesion</ion-label><ion-icon name="log-out"></ion-icon></ion-button>
+    </ion-buttons>
+
+    <ion-buttons slot="start">
+      <ion-button (click)="irAtras()">
+        <ion-icon name="arrow-round-back"></ion-icon>
+      </ion-button>
+
+    </ion-buttons>
+
+    <ion-title align="center">La comanda</ion-title>
+
+</ion-toolbar>
+</ion-header>
+
+<div class="content">
+<ion-button class="btn-izq" color="dark" (click)="redireccionar(1)">Alta de Producto</ion-button>
+<ion-button class="btn-der" color="danger">Altas</ion-button>
+<ion-button class="btn-izq" color="danger">Altas</ion-button>
+<ion-button class="btn-der" color="danger">Altas</ion-button>
+<ion-button class="btn-izq" color="danger">Altas</ion-button>
+<ion-button class="btn-der" color="danger">Altas</ion-button>
+</div>

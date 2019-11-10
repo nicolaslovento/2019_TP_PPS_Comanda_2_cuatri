@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-buttons slot="end">
+      <ion-button  color="danger" (click)="cerrarSesion()"><ion-label>Cerrar<br>sesion</ion-label><ion-icon name="log-out"></ion-icon></ion-button>
+    </ion-buttons>
+
+    <ion-buttons slot="start">
+      <ion-button (click)="irAtras()">
+        <ion-icon name="arrow-round-back"></ion-icon>
+      </ion-button>
+
+    </ion-buttons>
+
+    <ion-title align="center">La comanda</ion-title>
+
+</ion-toolbar>
+</ion-header>
+
+
+
+<div class="content">
+  
+
+<div  class="formulario">
+
+  <img class="img" src="../../../../assets/imagenes/logo.png" width="130px" height="100px">
+
+<ion-item class="input">
+  <ion-label  >Nombre:</ion-label>
+  <ion-input  clear-input="true" type="text" name="nombre" [(ngModel)]="nombre"></ion-input>
+</ion-item>
+
+<ion-item class="input">
+  <ion-label >DNI:</ion-label>
+  <ion-input clear-input="true" type="number" name="dni" [(ngModel)]="dni" ></ion-input>
+  <ion-button shape="round" (click)="leerDniConQr()" color="success">Lector QR</ion-button>
+</ion-item>
+
+<ion-item class="input">
+  <ion-label>Foto:</ion-label>
+  <ion-button shape="round" fill="outline" expand="block" (click)="tomarFoto()" color="dark">Tomar foto</ion-button>
+  <div *ngIf="this.foto">
+    <img src={{this.foto}} width="60px" height="38px">
+  </div>
+</ion-item>
+
+<ion-item class="input">
+    <ion-label>Clave:</ion-label>
+    <ion-input clear-input="true" type="password" name="clave" [(ngModel)]="clave" ></ion-input>
+</ion-item>
+
+<ion-item class="button">
+    <ion-button class="btn-limpiar" type="reset" shape="round" fill="outline" expand="block" (click)="limpiarForm()" color="danger">Limpiar</ion-button>
+    <ion-button class="btn-registrar" shape="round" fill="outline" expand="block" (click)="darDeAlta()" color="success">Registrar</ion-button>
+</ion-item>
+
+</div>
+
+</div>
