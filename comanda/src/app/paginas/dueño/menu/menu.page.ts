@@ -22,6 +22,7 @@ export class MenuPage implements OnInit {
         break;
 
       case 2:
+        this.router.navigateByUrl('aprobar-dueño');
         break;
 
       case 3:

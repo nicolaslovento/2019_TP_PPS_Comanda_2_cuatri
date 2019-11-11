@@ -1,93 +1,39 @@
 <ion-header>
-  <ion-toolbar color="dark">
-    <ion-buttons slot="end">
-      <ion-button  color="danger" (click)="cerrarSesion()"><ion-label>Cerrar<br>sesion</ion-label><ion-icon name="log-out"></ion-icon></ion-button>
-    </ion-buttons>
-
-    <ion-buttons slot="start">
-      <ion-button (click)="irAtras()">
-        <ion-icon name="arrow-round-back"></ion-icon>
-      </ion-button>
-
-    </ion-buttons>
-
-    <ion-title align="center">La comanda</ion-title>
-
-</ion-toolbar>
-</ion-header>
-
-
-
-<div class="content">
-
-  <div class="selectAlta">
-    <label><b>Alta de dueño/supervisor</b></label><ion-checkbox checked="true" color="primary"  (click)="this.opcion='dueño/supervisor'"></ion-checkbox>
-    <label><b>&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;Alta de empleado</b></label><ion-checkbox color="secondary"  (click)="this.opcion='empleado'"></ion-checkbox>
-  </div>
-    <!--<ion-select>
-      <ion-select-option  value="dueño" >Dueño</ion-select-option>
-      <ion-select-option  value="supervisor">Supervisor</ion-select-option>
-    </ion-select>-->
+    <ion-toolbar color="dark">
+      <ion-buttons slot="end">
+        <ion-button  color="danger" (click)="cerrarSesion()"><ion-label>Cerrar<br>sesion</ion-label><ion-icon name="log-out"></ion-icon></ion-button>
+      </ion-buttons>
   
-<div *ngIf="this.opcion=='dueño/supervisor'">
-
-<div  class="formulario">
-
-  <img class="img" src="../../../../assets/imagenes/logo.png" width="130px" height="100px">
-
-<ion-item class="input">
-  <ion-label  >Nombre:</ion-label>
-  <ion-input  clear-input="true" type="text" name="nombre" [(ngModel)]="nombre"></ion-input>
-</ion-item>
-
-<ion-item class="input">
-  <ion-label >Apellido:</ion-label>
-  <ion-input clear-input="true" type="text" name="apellido" [(ngModel)]="apellido" ></ion-input>
-</ion-item>
-
-<ion-item class="input">
-  <ion-label >DNI:</ion-label>
-  <ion-input clear-input="true" type="number" name="dni" [(ngModel)]="dni" ></ion-input>
-  <ion-button shape="round" (click)="leerDniConQr()" color="success">Lector QR</ion-button>
-</ion-item>
-
-<ion-item class="input">
-  <ion-label>CUIL:</ion-label>
-  <ion-input clear-input="true" type="number" name="cuil" [(ngModel)]="cuil" ></ion-input>
-</ion-item>
-
-<ion-item class="input">
-  <ion-label>Foto:</ion-label>
-  <ion-button shape="round" fill="outline" expand="block" (click)="tomarFoto()" color="dark">Tomar foto</ion-button>
-  <div *ngIf="this.foto">
-    <img src={{this.foto}} width="60px" height="38px">
-  </div>
-</ion-item>
-
-<ion-item class="input">
-  <ion-label>Perfil:</ion-label>
-  <ion-select placeholder="Seleccione perfil" [(ngModel)]="perfil" okText="Elegir" cancelText="Cancelar">
-    <ion-select-option  value="dueño" >Dueño</ion-select-option>
-    <ion-select-option  value="supervisor">Supervisor</ion-select-option>
-  </ion-select>
-</ion-item>
-
-<ion-item class="input">
-    <ion-label>Clave:</ion-label>
-    <ion-input clear-input="true" type="password" name="clave" [(ngModel)]="clave" ></ion-input>
-</ion-item>
-
-<ion-item class="button">
-    <ion-button class="btn-limpiar" type="reset" shape="round" fill="outline" expand="block" (click)="limpiarForm()" color="danger">Limpiar</ion-button>
-    <ion-button class="btn-registrar" shape="round" fill="outline" expand="block" (click)="darDeAlta()" color="success">Registrar</ion-button>
-</ion-item>
-
-</div>
-</div>
-
-
-<div *ngIf="this.opcion=='empleado'">
-
+      <ion-buttons slot="start">
+        <ion-button (click)="irAtras()">
+          <ion-icon name="arrow-round-back"></ion-icon>
+        </ion-button>
+  
+      </ion-buttons>
+  
+      <ion-title align="center">La comanda</ion-title>
+  
+  </ion-toolbar>
+  </ion-header>
+  
+  
+  
+  <div class="content">
+  
+    <div class="selectAlta">
+          <ion-select [(ngModel)]="opcion">
+            <ion-select-option selected value="dueño/supervisor">Dueño/Supervisor</ion-select-option>
+            <ion-select-option value="empleado">Empleado</ion-select-option>
+            <ion-select-option value="mesa">Mesa</ion-select-option>
+          </ion-select>
+    </div>
+      <!--<ion-select>
+        <ion-select-option  value="dueño" >Dueño</ion-select-option>
+        <ion-select-option  value="supervisor">Supervisor</ion-select-option>
+      </ion-select>-->
+    
+  <div *ngIf="this.opcion=='dueño/supervisor'">
+  
   <div  class="formulario">
   
     <img class="img" src="../../../../assets/imagenes/logo.png" width="130px" height="100px">
@@ -124,9 +70,8 @@
   <ion-item class="input">
     <ion-label>Perfil:</ion-label>
     <ion-select placeholder="Seleccione perfil" [(ngModel)]="perfil" okText="Elegir" cancelText="Cancelar">
-      <ion-select-option  value="empleadoMozo">Mozo</ion-select-option>
-      <ion-select-option  value="empleadoCocinero">Cocinero</ion-select-option>
-      <ion-select-option  value="empleadoBartender">Bartender</ion-select-option>
+      <ion-select-option  value="dueño" >Dueño</ion-select-option>
+      <ion-select-option  value="supervisor">Supervisor</ion-select-option>
     </ion-select>
   </ion-item>
   
@@ -142,6 +87,95 @@
   
   </div>
   </div>
-</div>
+  
+  
+  <div *ngIf="this.opcion=='empleado'">
+  
+    <div  class="formulario">
+    
+      <img class="img" src="../../../../assets/imagenes/logo.png" width="130px" height="100px">
+    
+    <ion-item class="input">
+      <ion-label  >Nombre:</ion-label>
+      <ion-input  clear-input="true" type="text" name="nombre" [(ngModel)]="nombre"></ion-input>
+    </ion-item>
+    
+    <ion-item class="input">
+      <ion-label >Apellido:</ion-label>
+      <ion-input clear-input="true" type="text" name="apellido" [(ngModel)]="apellido" ></ion-input>
+    </ion-item>
+    
+    <ion-item class="input">
+      <ion-label >DNI:</ion-label>
+      <ion-input clear-input="true" type="number" name="dni" [(ngModel)]="dni" ></ion-input>
+      <ion-button shape="round" (click)="leerDniConQr()" color="success">Lector QR</ion-button>
+    </ion-item>
+    
+    <ion-item class="input">
+      <ion-label>CUIL:</ion-label>
+      <ion-input clear-input="true" type="number" name="cuil" [(ngModel)]="cuil" ></ion-input>
+    </ion-item>
+    
+    <ion-item class="input">
+      <ion-label>Foto:</ion-label>
+      <ion-button shape="round" fill="outline" expand="block" (click)="tomarFoto()" color="dark">Tomar foto</ion-button>
+      <div *ngIf="this.foto">
+        <img src={{this.foto}} width="60px" height="38px">
+      </div>
+    </ion-item>
+    
+    <ion-item class="input">
+      <ion-label>Perfil:</ion-label>
+      <ion-select placeholder="Seleccione perfil" [(ngModel)]="perfil" okText="Elegir" cancelText="Cancelar">
+        <ion-select-option  value="empleadoMozo">Mozo</ion-select-option>
+        <ion-select-option  value="empleadoCocinero">Cocinero</ion-select-option>
+        <ion-select-option  value="empleadoBartender">Bartender</ion-select-option>
+      </ion-select>
+    </ion-item>
+    
+    <ion-item class="input">
+        <ion-label>Clave:</ion-label>
+        <ion-input clear-input="true" type="password" name="clave" [(ngModel)]="clave" ></ion-input>
+    </ion-item>
+    
+    <ion-item class="button">
+        <ion-button class="btn-limpiar" type="reset" shape="round" fill="outline" expand="block" (click)="limpiarForm()" color="danger">Limpiar</ion-button>
+        <ion-button class="btn-registrar" shape="round" fill="outline" expand="block" (click)="darDeAlta()" color="success">Registrar</ion-button>
+    </ion-item>
+    
+    </div>
+    </div>
 
+    <div *ngIf="this.opcion=='mesa'">
+  
+      <div  class="formulario">
 
+        <img class="img" src="../../../../assets/imagenes/logo.png" width="130px" height="100px">
+      
+      <ion-item class="input">
+        <ion-label  >Número de Mesa:</ion-label>
+        <ion-input  clear-input="true" type="number" name="numero" [(ngModel)]="numero"></ion-input>
+      </ion-item>
+      
+      <ion-item class="input">
+        <ion-label >Cantidad de Comensales:</ion-label>
+        <ion-input clear-input="true" type="number" name="comensales" [(ngModel)]="comensales" ></ion-input>
+      </ion-item>
+      
+      <ion-item class="input">
+        <ion-label>Foto:</ion-label>
+        <ion-button shape="round" fill="outline" expand="block" (click)="tomarFoto()" color="dark">Tomar foto</ion-button>
+        <div *ngIf="this.foto">
+          <img src={{this.foto}} width="60px" height="38px">
+        </div>
+      </ion-item>
+      
+      <ion-item class="button">
+          <ion-button class="btn-limpiar" type="reset" shape="round" fill="outline" expand="block" (click)="limpiarForm()" color="danger">Limpiar</ion-button>
+          <ion-button class="btn-registrar" shape="round" fill="outline" expand="block" (click)="darDeAlta()" color="success">Registrar</ion-button>
+      </ion-item>
+      
+      </div>
+      </div>
+  </div>
+  

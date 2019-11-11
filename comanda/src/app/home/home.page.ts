@@ -11,7 +11,7 @@ import { AlertControllerService } from '../servicios/alert-controller.service';
 })
 export class HomePage {
 
-  dni="";
+  usuario="";
   clave="";
   error="";
 
@@ -33,25 +33,20 @@ export class HomePage {
 /*Verifica que los datos ingresados estén correctos*/
   verificarError(){
 
-    if(this.dni=="" && this.clave==""){
-      this.error="El dni y la clave no pueden estar vacíos.";
+    if(this.usuario=="" && this.clave==""){
+      this.error="El usuario y la clave no pueden estar vacíos.";
       this.alertService.alertError(this.error);
       
       return true;
     }
-    if(this.dni==""){
-      this.error="El dni no puede estar vacío.";
+    if(this.usuario==""){
+      this.error="El usuario no puede estar vacío.";
       this.alertService.alertError(this.error);
      
       return true;
     }
 
-    if(this.dni.length<3){
-      this.error="El dni debe tener al menos 3 dígitos.";
-      this.alertService.alertError(this.error);
-     
-      return true;
-    }
+    
     
     if(this.clave==""){
       this.error="La clave no puede estar vacía.";
@@ -75,44 +70,44 @@ export class HomePage {
     switch(eleccion){
         case 1:
           //supervisor
-          this.dni="1111";
-          this.clave="1111";
+          this.usuario="supervisor";
+          this.clave="supervisor";
         break;
         case 2:
           //dueño
-          this.dni="2222";
-          this.clave="2222";
+          this.usuario="dueño";
+          this.clave="dueño";
         break;
         case 3:
           //empleadoMozo
-            this.dni="3333";
-          this.clave="3333";
+            this.usuario="mozo";
+          this.clave="mozo";
             
         break;
         case 4:
           //empleadoCocinero
-            this.dni="4444";
-            this.clave="4444";
+            this.usuario="cocinero";
+            this.clave="cocinero";
         break;
         case 5:
           //empleadoBartender
-            this.dni="5555";
-            this.clave="5555";
+            this.usuario="bartender";
+            this.clave="bartender";
         break;
         case 6:
           //clienteRegistrado
-            this.dni="6666";
-            this.clave="6666";
+            this.usuario="registrado";
+            this.clave="registrado";
         break;
         case 7:
           //clienteAnonimo
-            this.dni="7777";
-            this.clave="7777";
+            this.usuario="anonimo";
+            this.clave="anonimo";
         break;
         case 8:
           //empleadoMetre
-            this.dni="8888";
-            this.clave="8888";
+            this.usuario="metre";
+            this.clave="metre";
         break;
         case 9:
           this.router.navigateByUrl('alta-cliente');
@@ -157,7 +152,7 @@ export class HomePage {
     
     if(!this.verificarError()){
 
-      this.dbFirestore.verificarUsuario(this.dni,this.clave).then((usuario)=>{
+      this.dbFirestore.verificarUsuario(this.usuario,this.clave).then((usuario)=>{
         console.log(usuario);
         this.alertService.alertBienvenida("Bienvenido",3000).then(()=>{
           localStorage.setItem('usuario',JSON.stringify(usuario));//guarda usuario en ls

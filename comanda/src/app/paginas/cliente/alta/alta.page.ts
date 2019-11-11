@@ -15,6 +15,7 @@ export class AltaPage implements OnInit {
 
   nombre:string="";
   apellido:string="";
+  usuario="";
   dni="";
   foto:any="";
   clave:string="";
@@ -49,9 +50,11 @@ export class AltaPage implements OnInit {
         let usuarioNuevo={
           nombre:this.nombre,
           apellido:this.apellido,
+          usuario:this.usuario,
           dni:this.dni.toString(),
           foto:this.foto,
-          clave:this.clave
+          clave:this.clave,
+          estado:"noAprobado"
         }
         this.serviceFirestore.cargarCliente(usuarioNuevo).then(()=>{
           this.alertService.alertBienvenida("Cargando usuario..",2000).then(()=>{
@@ -87,12 +90,12 @@ export class AltaPage implements OnInit {
      
     }
 
-    if(this.foto==""){
+    /*if(this.foto==""){
 
       this.error="Debe tomarse una foto.";
       errores++;
       
-    }
+    }*/
 
     
     if(this.clave.length<0){
@@ -129,6 +132,7 @@ export class AltaPage implements OnInit {
     this.dni="";
     this.foto="";
     this.clave="";
+    this.usuario="";
   }
 
   leerDniConQr(){

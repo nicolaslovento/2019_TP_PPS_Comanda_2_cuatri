@@ -20,6 +20,9 @@ const routes: Routes = [
   { path: 'menu-mozo', loadChildren: './paginas/empleados/mozo/menu/menu.module#MenuPageModule' },
   { path: 'alta-clienteNoRegistrado', loadChildren: './paginas/clienteNoRegistrado/alta/alta.module#AltaPageModule' },
   { path: 'menu-clienteNoRegistrado', loadChildren: './paginas/clienteNoRegistrado/menu/menu.module#MenuPageModule' },
+  { path: 'aprobar-dueño', loadChildren: './paginas/dueño/aprobar-clientes/aprobar-clientes.module#AprobarClientesPageModule' },
+  { path: 'aprobar-supervisor', loadChildren: './paginas/supervisor/aprobar-clientes/aprobar-clientes.module#AprobarClientesPageModule' },
+
 
 
 

@@ -12,25 +12,36 @@ export class CloudFirestoreService {
   /*
   Verifica que el usuario exista
   */
-  verificarUsuario(correo:string,clave:String){
-    return new Promise((resolve,rejected)=>{
-
-      this.dbFirestore.collection('usuarios').doc(correo).valueChanges().subscribe((user:any)=>{
-        if(user){
-
-          if(user.clave==clave){
-            resolve(user);
-          }else{
-            rejected("Error: La contraseña es incorrecta");
-          }
-        }else{
-          rejected("Error: El usuario no existe");
+ async verificarUsuario(usuario:string,clave:string){
+  var turnos=[];
+  return new Promise((resolve,rejected)=>{
+  this.dbFirestore.collection('usuarios').get().subscribe((user)=>{
+    user.docs.map((user:any)=>{
+      
+      if(user.data().perfil=='cliente' && user.data().usuario==usuario && user.data().clave==clave){
+        switch(user.data().estado){
+          case 'aprobado':
+            resolve(user.data());
+          break;
+          case 'noAprobado':
+            rejected("Tu solicitud de registro todavía no fue aprobada");
+          break;
+          case 'rechazado':
+            rejected("Tu solicitud de registro ha sido rechazada");
+          break;
         }
-        
-      });
+      }
 
-    })
-  }
+      if(user.data().usuario==usuario && user.data().clave==clave){
+        resolve(user.data());
+      }
+      
+    });
+   
+  })
+  
+})
+}
 
   
 
@@ -61,7 +72,7 @@ cargarDueñoOSupervisor(usuarioNuevo:any){
 cargarCliente(usuarioNuevo:any) {
   return new Promise((resolve,rejected)=>{
 
-    this.dbFirestore.collection("usuarios").doc(usuarioNuevo.dni.toString()).set({
+    this.dbFirestore.collection("usuarios").doc(usuarioNuevo.usuario).set({
     
     nombre:usuarioNuevo.nombre,
     apellido:usuarioNuevo.apellido,
@@ -69,6 +80,7 @@ cargarCliente(usuarioNuevo:any) {
     foto:usuarioNuevo.foto,
     clave:usuarioNuevo.clave,
     perfil:"cliente",
+    estado:usuarioNuevo.estado
 
   }).then(()=>{
     resolve(usuarioNuevo);
@@ -140,6 +152,34 @@ cargarMesa(mesaNueva:any){
   });
 })
 }  
+
+
+//retorna todos los usuarios de la bd
+traerUsuarios(){
+  
+  
+  return this.dbFirestore.collection('usuarios').snapshotChanges();
+    
+}
+
+//cambia estado de cliente 
+darEstadoACliente(cliente:any,estado:string){
+
+  return new Promise((resolve,rejected)=>{
+    
+    this.dbFirestore.collection("usuarios").doc(cliente.usuario).update({
+    
+    estado:estado
+  
+   }).then(()=>{
+     resolve("Se aprobó")
+   }).catch(()=>{
+     rejected("No se aprobó")
+   })
+})
+
+
+}
 
 
 }

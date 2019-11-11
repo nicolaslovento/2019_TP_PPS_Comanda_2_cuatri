@@ -1,0 +1,41 @@
+<div class="screen">
+    <ion-header>
+        <ion-toolbar color="dark">
+          <ion-buttons slot="end">
+            <ion-button  color="danger" (click)="this.router.navigateByUrl('')"><ion-label>Cerrar<br>sesion</ion-label><ion-icon name="log-out"></ion-icon></ion-button>
+          </ion-buttons>
+      
+          <ion-buttons slot="start">
+            <ion-button (click)="this.router.navigateByUrl('menu-supervisor')">
+              <ion-icon name="arrow-round-back"></ion-icon>
+            </ion-button>
+      
+          </ion-buttons>
+      
+          <ion-title align="center">Solicitudes</ion-title>
+      
+      </ion-toolbar>
+      </ion-header>
+
+<div class="content">
+
+  
+  <ion-list>
+    <ion-item *ngFor="let c of clientes" class="item">
+        <ion-text color="primary">
+            <h5>{{c.nombre}} {{c.apellido}}</h5>
+        </ion-text><br>
+        <ion-label></ion-label>
+        <ion-button color="success" (click)="aprobarCliente(c)">Aprobar </ion-button>
+        <ion-button color="danger" (click)="rechazarCliente(c)">Rechazar </ion-button><br>
+        <ion-avatar slot="start">
+            <img src={{c.foto}} width="80px" height="80px">
+          
+        </ion-avatar>
+        
+    </ion-item>
+
+    </ion-list>
+</div>
+
+</div>
