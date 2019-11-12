@@ -13,32 +13,42 @@ export class CloudFirestoreService {
   Verifica que el usuario exista
   */
  async verificarUsuario(usuario:string,clave:string){
+  var existe=false;
   var turnos=[];
   return new Promise((resolve,rejected)=>{
   this.dbFirestore.collection('usuarios').get().subscribe((user)=>{
     user.docs.map((user:any)=>{
-      
-      if(user.data().perfil=='cliente' && user.data().usuario==usuario && user.data().clave==clave){
-        switch(user.data().estado){
-          case 'aprobado':
-            resolve(user.data());
-          break;
-          case 'noAprobado':
-            rejected("Tu solicitud de registro todavía no fue aprobada");
-          break;
-          case 'rechazado':
-            rejected("Tu solicitud de registro ha sido rechazada");
-          break;
-        }
-      }
+      //console.log(usuario+" "+clave);
+    if(user.data().usuario==usuario && user.data().clave==clave){
+      existe=true;
+      if(user.data().perfil=="cliente"){
 
-      if(user.data().usuario==usuario && user.data().clave==clave){
+          if(user.data().estado=='aprobado'){
+              resolve(user.data());
+          }else{
+            if(user.data().estado=='noAprobado'){
+
+              rejected("Tu solicitud de registro todavía no fue aprobada");
+            }else{
+
+              rejected("Tu solicitud de registro ha sido rechazada");
+            }
+          }
+           
+    }else{
         resolve(user.data());
-      }
-      
-    });
+        
+    }
+  }
+   
+
+  });
    
   })
+
+  /*if(!existe){
+    rejected("Usuario o contraseña incorrecta");
+  }*/
   
 })
 }
@@ -94,10 +104,10 @@ cargarCliente(usuarioNuevo:any) {
 cargarClienteAnonimo(usuarioNuevo:any) {
   return new Promise((resolve,rejected)=>{
 
-    this.dbFirestore.collection("usuarios").doc(usuarioNuevo.dni.toString()).set({
+    this.dbFirestore.collection("usuarios").doc(usuarioNuevo.usuario).set({
     
     nombre:usuarioNuevo.nombre,
-    dni:usuarioNuevo.dni,
+    usuario:usuarioNuevo.usuario,
     foto:usuarioNuevo.foto,
     clave:usuarioNuevo.clave,
     perfil:"clienteAnonimo",
@@ -181,5 +191,69 @@ darEstadoACliente(cliente:any,estado:string){
 
 }
 
+async verificarIngresoAlRestaurante(qr:string){
+  
+  
+  return new Promise((resolve,rejected)=>{
+  this.dbFirestore.collection('restaurante').get().subscribe((res)=>{
+    res.docs.map((res:any)=>{
+      
+    if(res.data().qr==qr){
+
+      resolve("Bienvenido al restaurante")
+
+    }else{
+      rejected("No pudo ingresar al restaurante")
+    }
+   
+
+  });
+   
+  })
+
+})
+}
+
+async cambiarEstadoDeEspera(cliente,estado:boolean){
+  
+  
+  return new Promise((resolve,rejected)=>{
+    
+    this.dbFirestore.collection("usuarios").doc(cliente.usuario).update({
+    
+    esperandoMesa:estado
+  
+   }).then(()=>{
+     resolve("Se asignó")
+   }).catch(()=>{
+     rejected("No se asignó")
+   })
+})
+
+}
+
+traerMesas(){
+  
+  return this.dbFirestore.collection('mesas').snapshotChanges();
+
+}
+
+async cambiarEstadoMesa(cliente,mesa,estado:boolean){
+  
+  
+  return new Promise((resolve,rejected)=>{
+    
+    this.dbFirestore.collection("mesas").doc(mesa.qr).update({
+    usuario:cliente.usuario,
+    disponible:estado
+  
+   }).then(()=>{
+     resolve("Se asignó")
+   }).catch(()=>{
+     rejected("No se asignó")
+   })
+})
+
+}
 
 }

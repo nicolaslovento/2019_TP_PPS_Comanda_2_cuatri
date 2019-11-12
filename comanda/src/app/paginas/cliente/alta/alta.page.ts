@@ -57,7 +57,7 @@ export class AltaPage implements OnInit {
           estado:"noAprobado"
         }
         this.serviceFirestore.cargarCliente(usuarioNuevo).then(()=>{
-          this.alertService.alertBienvenida("Cargando usuario..",2000).then(()=>{
+          this.alertService.alertBienvenida("Registrando usuario..",2000).then(()=>{
             this.limpiarForm();
             this.irAtras();
           });
@@ -90,12 +90,12 @@ export class AltaPage implements OnInit {
      
     }
 
-    /*if(this.foto==""){
+    if(this.foto==""){
 
       this.error="Debe tomarse una foto.";
       errores++;
       
-    }*/
+    }
 
     
     if(this.clave.length<0){

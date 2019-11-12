@@ -21,7 +21,8 @@ const routes: Routes = [
   { path: 'alta-clienteNoRegistrado', loadChildren: './paginas/clienteNoRegistrado/alta/alta.module#AltaPageModule' },
   { path: 'menu-clienteNoRegistrado', loadChildren: './paginas/clienteNoRegistrado/menu/menu.module#MenuPageModule' },
   { path: 'aprobar-dueño', loadChildren: './paginas/dueño/aprobar-clientes/aprobar-clientes.module#AprobarClientesPageModule' },
-  { path: 'aprobar-supervisor', loadChildren: './paginas/supervisor/aprobar-clientes/aprobar-clientes.module#AprobarClientesPageModule' },
+  { path: 'aprobar-supervisor', loadChildren: './paginas/supervisor/aprobar-clientes/aprobar-clientes.module#AprobarClientesPageModule' },  { path: 'asignar-mesas', loadChildren: './paginas/empleados/metre/asignar-mesas/asignar-mesas.module#AsignarMesasPageModule' },
+
 
 
 

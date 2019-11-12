@@ -136,9 +136,13 @@ export class HomePage {
       case 'empleadoBartender':
         this.router.navigateByUrl('menu-bartender');
       break;
-      case 'cliente': //Este sería el cliente no registrado
+      case 'cliente': 
         this.router.navigateByUrl('menu-cliente'); 
       break;
+      case 'clienteAnonimo': 
+        this.router.navigateByUrl('menu-clienteNoRegistrado'); 
+      break;
+      
       case 'empleadoMetre':
         this.router.navigateByUrl('menu-metre');
       break;
@@ -151,7 +155,7 @@ export class HomePage {
   login(){
     
     if(!this.verificarError()){
-
+      console.log(this.usuario+" "+this.clave)
       this.dbFirestore.verificarUsuario(this.usuario,this.clave).then((usuario)=>{
         console.log(usuario);
         this.alertService.alertBienvenida("Bienvenido",3000).then(()=>{

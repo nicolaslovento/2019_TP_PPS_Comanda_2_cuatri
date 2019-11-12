@@ -15,7 +15,7 @@ export class AltaPage implements OnInit {
 
   nombre:string="";
   apellido:string="";
-  dni="";
+  usuario:string="";
   foto:any="";
   clave:string="";
   error:string="";
@@ -48,12 +48,12 @@ export class AltaPage implements OnInit {
 
         let usuarioNuevo={
           nombre:this.nombre,
-          dni:this.dni.toString(),
+          usuario:this.usuario.toString(),
           foto:this.foto,
           clave:this.clave
         }
         this.serviceFirestore.cargarClienteAnonimo(usuarioNuevo).then(()=>{
-          this.alertService.alertBienvenida("Cargando usuario..",2000).then(()=>{
+          this.alertService.alertBienvenida("Registrando usuario..",2000).then(()=>{
             this.limpiarForm();
             this.irAtras();
           });
@@ -74,22 +74,15 @@ export class AltaPage implements OnInit {
       errores++;
     }
 
-    if(this.dni.length<6){
+    if(this.usuario.length<4){
 
-      this.error="El dni debe tener al menos 6 dígitos.";
+      this.error="El usuario debe tener 4 caractéres.";
       errores++;
      
     }
 
-    if(this.foto==""){
-
-      this.error="Debe tomarse una foto.";
-      errores++;
-      
-    }
-
     
-    if(this.clave.length<0){
+    if(this.clave.length<4){
 
       this.error="La clave debe tener al menos 4 dígitos.";
       errores++;
@@ -119,19 +112,11 @@ export class AltaPage implements OnInit {
 
   limpiarForm(){
     this.nombre="";
-    this.dni="";
+    this.usuario="";
     this.foto="";
     this.clave="";
   }
 
-  leerDniConQr(){
-
-    this.scannerService.iniciarScanner().then((codigoQR:any)=>{
-      alert(codigoQR);
-      this.dni=codigoQR;
-    }).catch((error)=>{
-      this.alertService.alertError("No se puedo leer el codigo QR");
-    });
-  }
+  
 
 }

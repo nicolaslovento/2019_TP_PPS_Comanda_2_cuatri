@@ -1,26 +1,41 @@
-<ion-header>
-  <ion-toolbar color="dark">
-    <ion-buttons slot="end">
-      <ion-button  color="danger" (click)="cerrarSesion()"><ion-label>Cerrar<br>sesion</ion-label><ion-icon name="log-out"></ion-icon></ion-button>
-    </ion-buttons>
 
-    <ion-buttons slot="start">
-      <ion-button (click)="irAtras()">
-        <ion-icon name="arrow-round-back"></ion-icon>
-      </ion-button>
-
-    </ion-buttons>
-
-    <ion-title align="center">La comanda</ion-title>
-
-</ion-toolbar>
-</ion-header>
+<div class="screen">
+  <ion-header>
+      <ion-toolbar color="dark">
+        <ion-buttons slot="end">
+          <ion-button  color="danger" (click)="this.router.navigateByUrl('')"><ion-label>Cerrar<br>sesion</ion-label><ion-icon name="log-out"></ion-icon></ion-button>
+        </ion-buttons>
+    
+        <ion-buttons slot="start">
+          <ion-button (click)="this.router.navigateByUrl('menu-dueño')">
+            <ion-icon name="arrow-round-back"></ion-icon>
+          </ion-button>
+    
+        </ion-buttons>
+    
+        <ion-title align="center">Solicitudes</ion-title>
+    
+    </ion-toolbar>
+    </ion-header>
 
 <div class="content">
-<ion-button class="btn-izq" color="dark" (click)="redireccionar(1)">Alta de Cliente</ion-button>
-<ion-button class="btn-der" color="danger" (click)="redireccionar(2)">Alta de Cliente Anónimo</ion-button>
-<ion-button class="btn-izq" color="danger">Altas</ion-button>
-<ion-button class="btn-der" color="danger">Altas</ion-button>
-<ion-button class="btn-izq" color="danger">Altas</ion-button>
-<ion-button class="btn-der" color="danger">Altas</ion-button>
+
+  
+  <ion-list>
+    <ion-item *ngFor="let c of clientes" class="item">
+        <ion-text color="primary">
+            <h5>{{c.nombre}}</h5>
+        </ion-text><br>
+        <ion-label></ion-label>
+        <ion-button color="success" (click)="asignarClienteAMesa(c)">Asignar </ion-button><br>
+        <ion-avatar slot="start">
+            <img src={{c.foto}} width="80px" height="80px">
+          
+        </ion-avatar>
+        
+    </ion-item>
+
+    </ion-list>
+</div>
+
 </div>
