@@ -74,8 +74,9 @@ export class MenuPage implements OnInit {
         this.alertService.alertError("La mesa está ocupada");
       }
     })
-
-   }
+    
+  }
+   
 
   
 

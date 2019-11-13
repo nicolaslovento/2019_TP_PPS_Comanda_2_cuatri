@@ -191,6 +191,8 @@ darEstadoACliente(cliente:any,estado:string){
 
 }
 
+
+/*devuelve resolve si el qr es correcto*/
 async verificarIngresoAlRestaurante(qr:string){
   
   
@@ -214,6 +216,7 @@ async verificarIngresoAlRestaurante(qr:string){
 })
 }
 
+/*cambia el estado del usuario a "esperandoMesa"*/
 async cambiarEstadoDeEspera(cliente,estado:boolean){
   
   
@@ -232,12 +235,14 @@ async cambiarEstadoDeEspera(cliente,estado:boolean){
 
 }
 
+/*trae todas las mesas(luego utilizar con subscribe)*/
 traerMesas(){
   
   return this.dbFirestore.collection('mesas').snapshotChanges();
 
 }
 
+/*cambia el estado de mesa y asigna usuario a la misma*/
 async cambiarEstadoMesa(cliente,mesa,estado:boolean){
   
   

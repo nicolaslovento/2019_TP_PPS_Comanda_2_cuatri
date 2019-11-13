@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { timer } from 'rxjs';
 import { messaging } from 'firebase';
+import { reject, isRejected } from 'q';
+import { resolve } from 'url';
 
 
 @Injectable({
@@ -12,30 +14,7 @@ export class AlertControllerService {
   constructor(public alertController: AlertController) { }
 
 
-  async alertMesaConfirmacion(mesa) {
-    const alert = await this.alertController.create({
-      header: 'Mesa: '+mesa.numero,
-      message: 'Esta mesa se encuentra disponible!',
-      buttons: [
-        {
-          text: 'Cancelar',
-          role: 'cancelar',
-          cssClass: 'secondary',
-          handler: (blah) => {
-            console.log('Confirm Cancel: blah');
-          }
-        }, {
-          text: 'Asignar',
-          cssClass: 'success',
-          handler: () => {
-            console.log('Confirm Okay');
-          }
-        }
-      ]
-    });
-
-    await alert.present();
-  }
+  
 /*
   Despliega un alert de error indicando mensaje.
 */

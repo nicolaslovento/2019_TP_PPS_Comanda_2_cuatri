@@ -23,11 +23,11 @@
   
   <ion-list>
     <ion-item *ngFor="let c of clientes" class="item">
-        <ion-text color="primary">
+        <ion-text color="dark">
             <h5>{{c.nombre}}</h5>
         </ion-text><br>
         <ion-label></ion-label>
-        <ion-button color="success" (click)="asignarClienteAMesa(c)">Asignar </ion-button><br>
+        <ion-button color="dark" (click)="asignarClienteAMesa(c)">Asignar mesa</ion-button><br>
         <ion-avatar slot="start">
             <img src={{c.foto}} width="80px" height="80px">
           

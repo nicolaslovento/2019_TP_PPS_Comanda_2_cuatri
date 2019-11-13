@@ -23,30 +23,7 @@ export class MenuPage implements OnInit {
     
   }
 
-  redireccionar(eleccion:number){
-    switch(eleccion){
-
-      case 1:
-        this.router.navigateByUrl('alta-dueño');
-        break;
-
-      case 2:
-        this.router.navigateByUrl('aprobar-dueño');
-        break;
-
-      case 3:
-        break;
-
-      case 4:
-        break;
-
-      case 5:
-        break;
-
-      case 6:
-        break;
-    }
-  }
+  
 
   ingresarAlLocal(){
     let cliente=JSON.parse(localStorage.getItem('usuario'));
