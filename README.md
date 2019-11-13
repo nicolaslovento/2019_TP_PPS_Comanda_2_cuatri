@@ -32,7 +32,8 @@ Asignación de mesas. Inicio 11/11 - Fin 13/11<br></b>
 
 
 
-Objetivos: 09/11: Icono, splash, login y todas las altas terminadas.
+<h2>Objetivos:</h2><br> 
+<b>09/11: Icono, splash, login y todas las altas terminadas.</b>
 
 
 <br>
