@@ -1,11 +1,11 @@
 <h1>Trabajo práctico de Práctica Profesional "La comanda"</h1>
 
-<h2>Famiglietti, Franco Agustín. (Branch: Franco)<h2>
+<h2>Famiglietti, Franco Agustín. (Branch: Franco)</h2>
 
-Tareas:
+<h3>Tareas:</h3>
 
-Alta de clientes<br>
-Alta de productos
+<b>Alta de clientes<br>
+Alta de productos</b>
 
 
 
@@ -13,21 +13,21 @@ Alta de productos
 
 <h3>Tareas:</h3>
 
-Icono y splash<br>
+<b>Icono y splash<br>
 Login<br>
 Alta de dueño/supervisor<br>
 Alta de empleados<br>
 Verificación de pre-registro de clientes.(tarea de envío de email delegada a Facundo) Inicio 11/11 - Fin 13/11<br>
 Ingreso al local de cliente. Inicio 11/11 - Fin 13/11<br>
-Asignación de mesas. Inicio 11/11 - Fin 13/11<br>
+Asignación de mesas. Inicio 11/11 - Fin 13/11<br></b>
 
 
 
-Rey, Facundo. (Branch: Facundo)
+<h2>Rey, Facundo. (Branch: Facundo)</h2>
 
-Tareas:
+<h3>Tareas:</h3>
 
-Alta de mesa
+<b>Alta de mesa</b>
 
 
 
