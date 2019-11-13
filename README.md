@@ -1,25 +1,25 @@
-Trabajo práctico de Práctica Profesional "La comanda"
+<h1>Trabajo práctico de Práctica Profesional "La comanda"</h1>
 
-Famiglietti, Franco Agustín. (Branch: Franco)
+<h2>Famiglietti, Franco Agustín. (Branch: Franco)<h2>
 
 Tareas:
 
-Alta de clientes
+Alta de clientes<br>
 Alta de productos
 
 
 
-Lo Vento, Nicolás. (Branch: Nicolas)
+<h2>Lo Vento, Nicolás. (Branch: Nicolas)</h2>
 
-Tareas:
+<h3>Tareas:</h3>
 
-Icono y splash
-Login
-Alta de dueño/supervisor
-Alta de empleados
-Verificación de pre-registro de clientes.(tarea de envío de email delegada a Facundo) Inicio 11/11 - Fin 13/11
-Ingreso al local de cliente. Inicio 11/11 - Fin 13/11
-Asignación de mesas. Inicio 11/11 - Fin 13/11
+Icono y splash<br>
+Login<br>
+Alta de dueño/supervisor<br>
+Alta de empleados<br>
+Verificación de pre-registro de clientes.(tarea de envío de email delegada a Facundo) Inicio 11/11 - Fin 13/11<br>
+Ingreso al local de cliente. Inicio 11/11 - Fin 13/11<br>
+Asignación de mesas. Inicio 11/11 - Fin 13/11<br>
 
 
 
