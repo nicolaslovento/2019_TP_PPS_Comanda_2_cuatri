@@ -166,11 +166,13 @@ cargarMesa(mesaNueva:any){
 
 //retorna todos los usuarios de la bd
 traerUsuarios(){
-  
-  
-  return this.dbFirestore.collection('usuarios').snapshotChanges();
-    
+  return this.dbFirestore.collection('usuarios').snapshotChanges();  
 }
+
+traerProductos() {
+  return this.dbFirestore.collection('productos').snapshotChanges();
+}
+
 
 //cambia estado de cliente 
 darEstadoACliente(cliente:any,estado:string){
@@ -260,5 +262,28 @@ async cambiarEstadoMesa(cliente,mesa,estado:boolean){
 })
 
 }
+
+async verificarCargarQrMesa(qr: string) {
+  return new Promise((resolve,rejected)=>{
+    this.dbFirestore.collection('mesas').get().subscribe((res)=>{
+      res.docs.map((res:any)=>{
+        
+      if(res.data().qr==qr){
+  
+        resolve("Lista de productos.")
+  
+      }else{
+        rejected("No se pudo acceder a la lista de productos.")
+      }
+     
+  
+    });
+     
+    })
+  
+  })
+}
+
+
 
 }

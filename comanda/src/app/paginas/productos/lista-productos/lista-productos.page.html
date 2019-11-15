@@ -1,0 +1,64 @@
+
+<div class="screen">
+  <ion-header>
+      <ion-toolbar color="dark">
+        <ion-buttons slot="end">
+          <ion-button  color="danger" (click)="this.router.navigateByUrl('')"><ion-label>Cerrar<br>sesion</ion-label><ion-icon name="log-out"></ion-icon></ion-button>
+        </ion-buttons>
+    
+        <ion-buttons slot="start">
+          <ion-button (click)="this.router.navigateByUrl('menu-cliente')">
+            <ion-icon name="arrow-round-back"></ion-icon>
+          </ion-button>
+    
+        </ion-buttons>
+    
+        <ion-title align="center">Productos</ion-title>
+    
+    </ion-toolbar>
+    </ion-header>
+
+<div class="content">
+
+
+<ion-list>
+  <ion-item *ngFor="let p of platos" class="item">
+      <ion-text color="primary">
+          <h5>{{p.nombre}}</h5>
+      </ion-text><br>
+      <ion-label></ion-label>
+      <ion-avatar slot="start">
+          <img src={{p.foto1}} width="80px" height="80px">
+        
+      </ion-avatar>
+      
+  </ion-item>
+
+  <ion-item *ngFor="let b of bebidas" class="item">
+    <ion-text color="primary">
+        <h5>{{b.nombre}}</h5>
+    </ion-text><br>
+    <ion-label></ion-label>
+    <ion-avatar slot="start">
+        <img src={{b.foto1}} width="80px" height="80px">
+      
+    </ion-avatar>
+    
+</ion-item>
+
+<ion-item *ngFor="let p of postres" class="item">
+  <ion-text color="primary">
+      <h5>{{p.nombre}}</h5>
+  </ion-text><br>
+  <ion-label></ion-label>
+  <ion-avatar slot="start">
+      <img src={{p.foto1}} width="80px" height="80px">
+    
+  </ion-avatar>
+  
+</ion-item>
+
+  </ion-list>
+</div>
+
+</div>

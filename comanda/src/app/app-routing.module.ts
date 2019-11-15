@@ -30,6 +30,9 @@ const routes: Routes = [
 //paginas clienteNoRegistrado
   { path: 'alta-clienteNoRegistrado', loadChildren: './paginas/clienteNoRegistrado/alta/alta.module#AltaPageModule' },
   { path: 'menu-clienteNoRegistrado', loadChildren: './paginas/clienteNoRegistrado/menu/menu.module#MenuPageModule' },
+  
+  { path: 'lista-productos', loadChildren: './paginas/productos/lista-productos/lista-productos.module#ListaProductosPageModule' },
+
 
  
 
