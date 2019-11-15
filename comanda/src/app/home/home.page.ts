@@ -136,7 +136,7 @@ export class HomePage {
       case 'empleadoBartender':
         this.router.navigateByUrl('menu-bartender');
       break;
-      case 'cliente': 
+      case 'clienteRegistrado': 
         this.router.navigateByUrl('menu-cliente'); 
       break;
       case 'clienteAnonimo': 

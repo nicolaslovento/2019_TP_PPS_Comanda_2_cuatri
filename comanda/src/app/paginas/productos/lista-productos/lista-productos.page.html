@@ -22,17 +22,33 @@
 
 
 <ion-list>
-  <ion-item *ngFor="let p of platos" class="item">
+    <ion-title align="center">Platos</ion-title>
+  <ion-item *ngFor="let pl of platos" class="item">
       <ion-text color="primary">
-          <h5>{{p.nombre}}</h5>
+          <h5>{{pl.nombre}}</h5>
       </ion-text><br>
       <ion-label></ion-label>
       <ion-avatar slot="start">
-          <img src={{p.foto1}} width="80px" height="80px">
-        
+          <img src={{pl.foto1}} width="80px" height="80px">
       </ion-avatar>
+
+      <ion-select #C (ionChange)="agregarProducto(C.value, pl.precio, 'plato', pl.nombre)" value="0" placeholder="0" okText="Aceptar" cancelText="Cancelar">
+      <ion-select-option value="0">0</ion-select-option>
+      <ion-select-option value="1">1</ion-select-option>
+      <ion-select-option value="2">2</ion-select-option>
+      <ion-select-option value="3">3</ion-select-option>
+      <ion-select-option value="4">4</ion-select-option>
+      <ion-select-option value="5">5</ion-select-option>
+      <ion-select-option value="6">6</ion-select-option>
+      <ion-select-option value="7">7</ion-select-option>
+      <ion-select-option value="8">8</ion-select-option>
+      <ion-select-option value="9">9</ion-select-option>
+      <ion-select-option value="10">10</ion-select-option>
+      </ion-select>
       
   </ion-item>
+
+  <ion-title align="center">Bebidas</ion-title>
 
   <ion-item *ngFor="let b of bebidas" class="item">
     <ion-text color="primary">
@@ -40,11 +56,26 @@
     </ion-text><br>
     <ion-label></ion-label>
     <ion-avatar slot="start">
-        <img src={{b.foto1}} width="80px" height="80px">
-      
+        <img src={{b.foto1}} width="80px" height="80px"> 
     </ion-avatar>
+
+    <ion-select #C (ionChange)="agregarProducto(C.value, b.precio, 'bebida', b.nombre)" value="0" placeholder="0" okText="Aceptar" cancelText="Cancelar">
+        <ion-select-option value="0">0</ion-select-option>
+        <ion-select-option value="1">1</ion-select-option>
+        <ion-select-option value="2">2</ion-select-option>
+        <ion-select-option value="3">3</ion-select-option>
+        <ion-select-option value="4">4</ion-select-option>
+        <ion-select-option value="5">5</ion-select-option>
+        <ion-select-option value="6">6</ion-select-option>
+        <ion-select-option value="7">7</ion-select-option>
+        <ion-select-option value="8">8</ion-select-option>
+        <ion-select-option value="9">9</ion-select-option>
+        <ion-select-option value="10">10</ion-select-option>
+        </ion-select>
     
 </ion-item>
+
+<ion-title align="center">Postres</ion-title>
 
 <ion-item *ngFor="let p of postres" class="item">
   <ion-text color="primary">
@@ -53,12 +84,38 @@
   <ion-label></ion-label>
   <ion-avatar slot="start">
       <img src={{p.foto1}} width="80px" height="80px">
-    
   </ion-avatar>
+
+  <ion-select #C (ionChange)="agregarProducto(C.value, p.precio, 'postre', p.nombre)" value="0" placeholder="0" okText="Aceptar" cancelText="Cancelar">
+      <ion-select-option value="0">0</ion-select-option>
+      <ion-select-option value="1">1</ion-select-option>
+      <ion-select-option value="2">2</ion-select-option>
+      <ion-select-option value="3">3</ion-select-option>
+      <ion-select-option value="4">4</ion-select-option>
+      <ion-select-option value="5">5</ion-select-option>
+      <ion-select-option value="6">6</ion-select-option>
+      <ion-select-option value="7">7</ion-select-option>
+      <ion-select-option value="8">8</ion-select-option>
+      <ion-select-option value="9">9</ion-select-option>
+      <ion-select-option value="10">10</ion-select-option>
+      </ion-select>
   
 </ion-item>
 
   </ion-list>
 </div>
+
+<ion-header class="barraInferior">
+    <ion-toolbar color="dark">
+     
+  
+      <ion-title align="center">Total: ${{this.total}}</ion-title>
+
+      <ion-buttons slot="end">
+          <ion-button  color="success" (click)="hacerPedido()"><ion-label>Hacer<br>pedido</ion-label></ion-button>
+      </ion-buttons>
+  
+  </ion-toolbar>
+  </ion-header>
 
 </div>

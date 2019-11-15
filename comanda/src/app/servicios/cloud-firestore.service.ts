@@ -143,6 +143,27 @@ cargarProducto(productoNuevo:any) {
 })
 }
 
+//Cargar un pedido a la base de datos
+cargarPedido(pedidoNuevo: any) {
+
+  return new Promise((resolve,rejected)=>{
+
+    this.dbFirestore.collection("pedidos").doc(pedidoNuevo.cliente).set({
+    
+    total:pedidoNuevo.total,
+    cliente:pedidoNuevo.cliente,
+    platos:pedidoNuevo.platos,
+    bebidas:pedidoNuevo.bebidas,
+    postres:pedidoNuevo.postres,
+    
+  }).then(()=>{
+    resolve(pedidoNuevo);
+  }).catch((error)=>{
+    rejected(error);
+  });
+})
+}
+
 //Carga una mesa a la bd, su id será el numero 
 cargarMesa(mesaNueva:any){
 
@@ -218,6 +239,25 @@ async verificarIngresoAlRestaurante(qr:string){
 })
 }
 
+async verificarCargarQrMesa(qr: string) {
+
+  return new Promise((resolve,rejected)=>{
+    this.dbFirestore.collection('mesas').get().subscribe((res)=>{
+      res.docs.map((res:any)=>{
+                
+      if(res.data().qr==qr && res.data().disponible == true){
+  
+        resolve("Lista de productos.")
+  
+      }     
+  
+    });
+     
+    })
+  
+  })
+}
+
 /*cambia el estado del usuario a "esperandoMesa"*/
 async cambiarEstadoDeEspera(cliente,estado:boolean){
   
@@ -262,28 +302,6 @@ async cambiarEstadoMesa(cliente,mesa,estado:boolean){
 })
 
 }
-
-async verificarCargarQrMesa(qr: string) {
-  return new Promise((resolve,rejected)=>{
-    this.dbFirestore.collection('mesas').get().subscribe((res)=>{
-      res.docs.map((res:any)=>{
-        
-      if(res.data().qr==qr){
-  
-        resolve("Lista de productos.")
-  
-      }else{
-        rejected("No se pudo acceder a la lista de productos.")
-      }
-     
-  
-    });
-     
-    })
-  
-  })
-}
-
 
 
 }
