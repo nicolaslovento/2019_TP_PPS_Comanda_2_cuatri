@@ -35,7 +35,8 @@ Asignación de mesas. Inicio 11/11 - Fin 13/11<br></b>
 
 
 <h2>Objetivos:</h2><br> 
-<b>09/11: Icono, splash, login y todas las altas terminadas.</b>
+<b>09/11: Icono, splash, login y todas las altas terminadas.<br>
+16/11: Hasta hacer pedido (punto 7)</b>
 
 
 <br>
