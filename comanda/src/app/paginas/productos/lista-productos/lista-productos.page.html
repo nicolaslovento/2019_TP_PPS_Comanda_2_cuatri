@@ -32,7 +32,7 @@
           <img src={{pl.foto1}} width="80px" height="80px">
       </ion-avatar>
 
-      <ion-select #C (ionChange)="agregarProducto(C.value, pl.precio, 'plato', pl.nombre)" value="0" placeholder="0" okText="Aceptar" cancelText="Cancelar">
+      <ion-select #C (ionChange)="agregarProducto(C.value, pl)" value="0" placeholder="0" okText="Aceptar" cancelText="Cancelar">
       <ion-select-option value="0">0</ion-select-option>
       <ion-select-option value="1">1</ion-select-option>
       <ion-select-option value="2">2</ion-select-option>
@@ -59,7 +59,7 @@
         <img src={{b.foto1}} width="80px" height="80px"> 
     </ion-avatar>
 
-    <ion-select #C (ionChange)="agregarProducto(C.value, b.precio, 'bebida', b.nombre)" value="0" placeholder="0" okText="Aceptar" cancelText="Cancelar">
+    <ion-select #C (ionChange)="agregarProducto(C.value, b)" value="0" placeholder="0" okText="Aceptar" cancelText="Cancelar">
         <ion-select-option value="0">0</ion-select-option>
         <ion-select-option value="1">1</ion-select-option>
         <ion-select-option value="2">2</ion-select-option>
@@ -86,7 +86,7 @@
       <img src={{p.foto1}} width="80px" height="80px">
   </ion-avatar>
 
-  <ion-select #C (ionChange)="agregarProducto(C.value, p.precio, 'postre', p.nombre)" value="0" placeholder="0" okText="Aceptar" cancelText="Cancelar">
+  <ion-select #C (ionChange)="agregarProducto(C.value, p)" value="0" placeholder="0" okText="Aceptar" cancelText="Cancelar">
       <ion-select-option value="0">0</ion-select-option>
       <ion-select-option value="1">1</ion-select-option>
       <ion-select-option value="2">2</ion-select-option>

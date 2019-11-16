@@ -3,6 +3,7 @@ import { CloudFirestoreService } from 'src/app/servicios/cloud-firestore.service
 import { AlertControllerService } from 'src/app/servicios/alert-controller.service';
 
 import { Router } from '@angular/router';
+import { isNullOrUndefined } from 'util';
 
 @Component({
   selector: 'app-lista-productos',
@@ -12,20 +13,14 @@ import { Router } from '@angular/router';
 export class ListaProductosPage implements OnInit {
 
   productos=new Array();
+
   platos=new Array();
   bebidas=new Array();
   postres=new Array();
+
   total:number = 0;
-  totalPlatos = 0;
-  totalBebidas = 0;
-  totalPostres = 0;
-  cantidadPlatos = 0;
-  cantidadBebidas = 0;
-  cantidadPostres = 0;
-  nombrePlato: string = "";
-  nombreBebida: string = "";
-  nombrePostre: string = "";
-  pedido = new Array();
+
+  pedidos = new Array();
 
   constructor(
     private dbService:CloudFirestoreService,
@@ -66,9 +61,9 @@ export class ListaProductosPage implements OnInit {
     let pedidoNuevo={
       total:this.total,
       cliente:(cliente.usuario).toString(),
-      platos:this.nombrePlato+"-"+this.cantidadPlatos,
-      postres:this.nombrePostre+"-"+this.cantidadPostres,
-      bebidas:this.nombreBebida+"-"+this.cantidadBebidas,   
+      pedido:this.pedidos,
+      
+      
     }
     this.dbService.cargarPedido(pedidoNuevo).then(()=>{
       this.alertService.alertBienvenida("Realizando pedido..",2000).then(()=>{
@@ -80,29 +75,32 @@ export class ListaProductosPage implements OnInit {
     });
   }
 
-  agregarProducto(cantidad, precioUnitario, tipo, nombre) {
-    if(tipo == "plato") 
-    {
-      this.totalPlatos = cantidad * precioUnitario;
-      this.cantidadPlatos = cantidad;
-      this.nombrePlato = nombre;
+  agregarProducto(cantidad, producto) {
+
+    let flag = 0;
+    
+    if(this.pedidos != null) {
+      this.pedidos.forEach(pedido => {
+        if(pedido.nombre == producto.nombre) {
+          flag = 1;
+          if(pedido.cantidad != cantidad) {
+            pedido.cantidad = cantidad;
+            pedido.precio = (cantidad * producto.precio);
+          }
+        }
+      });
     }
 
-    if(tipo == "bebida") 
-    {
-      this.totalBebidas = cantidad * precioUnitario;
-      this.cantidadBebidas = cantidad;
-      this.nombreBebida = nombre;
+    if(flag == 0) {
+      this.pedidos.push({"tipo":producto.tipo,"cantidad":cantidad,"nombre":producto.nombre,"precio":(producto.precio*cantidad)});
     }
 
-    if(tipo == "postre") 
-    {
-      this.totalPostres = cantidad * precioUnitario;
-      this.cantidadPostres = cantidad;
-      this.nombrePostre = nombre;
-    }
+    this.total = 0;
 
-    this.total = this.totalPlatos + this.totalPostres + this.totalBebidas;
+    this.pedidos.forEach(pedido => {
+      this.total += pedido.precio;
+    })
+
   }
 
   
