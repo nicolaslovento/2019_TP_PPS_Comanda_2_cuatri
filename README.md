@@ -5,7 +5,9 @@
 <h3>Tareas:</h3>
 
 <b>Alta de clientes<br>
-Alta de productos</b>
+Alta de productos<br>
+Lista de productos<br>
+Pedido de productos</b>
 
 
 
