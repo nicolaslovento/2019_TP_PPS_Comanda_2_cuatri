@@ -29,9 +29,8 @@ Asignación de mesas. Inicio 11/11 - Fin 13/11<br></b>
 
 <h3>Tareas:</h3>
 
-<b>Alta de mesa</b>
-
-
+<b>Alta de mesa<br>
+Lector de DNI<br></b>
 
 
 <h2>Objetivos:</h2><br> 
