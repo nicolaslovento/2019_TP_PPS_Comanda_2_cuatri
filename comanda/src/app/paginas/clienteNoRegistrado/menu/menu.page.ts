@@ -11,6 +11,7 @@ import { CloudFirestoreService } from 'src/app/servicios/cloud-firestore.service
   styleUrls: ['./menu.page.scss'],
 })
 export class MenuPage implements OnInit {
+  mesas=new Array();
 
   constructor(
     private router:Router,
@@ -20,8 +21,63 @@ export class MenuPage implements OnInit {
     ) { }
 
   ngOnInit() {
+    this.cargarMesas();
+  }
+
+   
+  cargarMesas(){
+      this.serviceFirestore.traerMesas().subscribe((mesas)=>{
+        this.mesas.length=0;
+        mesas.map((mesa:any)=>{
+          if(mesa.payload.doc.data().disponible==true)
+           this.mesas.push(mesa.payload.doc.data());
+          
+        })
+      })
+   }
+
+   
+
+   pedirMesa(){
+
+    let cliente=JSON.parse(localStorage.getItem("usuario"));
+    let mesa=false;
+    this.scannerService.iniciarScanner().then((qr:any)=>{
+      if(this.mesas.length>0){
+        for(let i=0;i<this.mesas.length;i++){
+          if(this.mesas[i].qr==qr){
+              mesa=this.mesas[i];
+          }
+        }
+        this.serviceFirestore.verificarSiEstaHabilitado(cliente).then(()=>{
+
+          this.serviceFirestore.cambiarEstadoMesa(cliente,mesa,false).then(()=>{
+
+            this.alertService.alertBienvenida("Asignado mesa..",2000).then(()=>{
+
+              this.serviceFirestore.habilitarClienteParaPedirMesa(cliente,false).then(()=>{
+                  //acá cambio estado de habilitado por false, porque ya está sentado en la mesa
+                this.alertService.alertError("Mesa asignada con éxito");
+              })
+            });
+          });
+        }).catch(()=>{
+          this.alertService.alertError("No está habilitado para pedir una mesa.");
+        });
+
+      }else{
+        this.alertService.alertError("La mesa está ocupada");
+      }
+    })
+        
     
   }
+
+  
+   
+
+  
+
 
   
 
@@ -42,6 +98,10 @@ export class MenuPage implements OnInit {
       }).catch((error)=>{
         this.alertService.alertError("No se pudo leer el codigo QR");
       });
+    }
+
+    cargarQrMesa(){
+
     }
     
     

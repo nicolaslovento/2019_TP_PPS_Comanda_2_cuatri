@@ -24,7 +24,7 @@ export class MenuPage implements OnInit {
 
   ngOnInit() {
     this.cargarClientesEnEspera();
-    this.cargarMesas();
+   
   }
 
   cargarClientesEnEspera(){
@@ -40,7 +40,7 @@ export class MenuPage implements OnInit {
   }
 
    
-  cargarMesas(){
+  /*cargarMesas(){
       this.serviceFirestore.traerMesas().subscribe((mesas)=>{
         this.mesas.length=0;
         mesas.map((mesa:any)=>{
@@ -49,9 +49,18 @@ export class MenuPage implements OnInit {
           
         })
       })
+   }*/
+
+   habilitarCliente(cliente:any){
+
+    this.serviceFirestore.habilitarClienteParaPedirMesa(cliente,true).then(()=>{
+        this.serviceFirestore.cambiarEstadoDeEspera(cliente,false).then(()=>{
+          
+        })
+    })
    }
 
-   asignarClienteAMesa(cliente){
+   /*asignarClienteAMesa(cliente){
 
     let mesa=false;
     this.scannerService.iniciarScanner().then((qr:any)=>{
@@ -76,7 +85,7 @@ export class MenuPage implements OnInit {
     })
     
   }
-   
+   */
 
   
 

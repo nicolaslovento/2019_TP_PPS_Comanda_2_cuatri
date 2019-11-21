@@ -50,7 +50,9 @@ export class AltaPage implements OnInit {
           nombre:this.nombre,
           usuario:this.usuario.toString(),
           foto:this.foto,
-          clave:this.clave
+          clave:this.clave,
+          esperandoMesa:false,
+          habilitado:false
         }
         this.serviceFirestore.cargarClienteAnonimo(usuarioNuevo).then(()=>{
           this.alertService.alertBienvenida("Registrando usuario..",2000).then(()=>{

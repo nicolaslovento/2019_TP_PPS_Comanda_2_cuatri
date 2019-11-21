@@ -111,7 +111,8 @@ cargarClienteAnonimo(usuarioNuevo:any) {
     foto:usuarioNuevo.foto,
     clave:usuarioNuevo.clave,
     perfil:"clienteAnonimo",
-
+    esperandoMesa:usuarioNuevo.esperandoMesa,
+    habilitado:usuarioNuevo.habilitado,
   }).then(()=>{
     resolve(usuarioNuevo);
   }).catch((error)=>{
@@ -256,7 +257,25 @@ async verificarCargarQrMesa(qr: string) {
   })
 }
 
-/*cambia el estado del usuario a "esperandoMesa"*/
+async habilitarClienteParaPedirMesa(cliente,estado:boolean){
+  
+  
+  return new Promise((resolve,rejected)=>{
+    
+    this.dbFirestore.collection("usuarios").doc(cliente.usuario).update({
+    
+    habilitado:estado
+  
+   }).then(()=>{
+     resolve("Se habilitó")
+   }).catch(()=>{
+     rejected("No se habilitó")
+   })
+})
+
+}
+
+
 async cambiarEstadoDeEspera(cliente,estado:boolean){
   
   
@@ -297,6 +316,24 @@ async cambiarEstadoMesa(cliente,mesa,estado:boolean){
    }).catch(()=>{
      rejected("No se asignó")
    })
+})
+
+}
+
+async verificarSiEstaHabilitado(cliente:any){
+  
+  return new Promise((resolve,rejected)=>{
+  this.dbFirestore.collection('usuarios').doc(cliente.usuario).get().subscribe((cliente)=>{
+    console.log(cliente.data());
+    
+    if(cliente.data().habilitado==true){
+
+      resolve(cliente.data());
+    }else{
+      rejected("no");
+    }
+  })
+
 })
 
 }
