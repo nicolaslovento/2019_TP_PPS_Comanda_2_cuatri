@@ -20,6 +20,7 @@ export class AltaPage implements OnInit {
   foto2:any=""; 
   foto3:any=""; 
   error:string="";
+  tipo:string = "";
 
 
   constructor(
@@ -66,9 +67,11 @@ export class AltaPage implements OnInit {
           descripcion:this.descripcion,
           tiempoElab:this.tiempoElab.toString(),
           precio:this.precio.toString(),
+          tipo:this.tipo,
           foto1:this.foto1,
           foto2:this.foto2,
           foto3:this.foto3,
+          estado:"enviado",
         }
         this.serviceFirestore.cargarProducto(productoNuevo).then(()=>{
           this.alertService.alertBienvenida("Cargando producto..",2000).then(()=>{

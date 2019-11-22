@@ -58,5 +58,6 @@ export class MenuPage implements OnInit {
         this.alertService.alertError("No se pudo leer el codigo QR");
       });
     }
+    
 
 }

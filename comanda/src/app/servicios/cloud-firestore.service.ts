@@ -131,6 +131,7 @@ cargarProducto(productoNuevo:any) {
     descripcion:productoNuevo.descripcion,
     tiempoElab:productoNuevo.tiempoElab,
     precio:productoNuevo.precio,
+    tipo:productoNuevo.tipo,
     foto1:productoNuevo.foto1,
     foto2:productoNuevo.foto1,
     foto3:productoNuevo.foto1,
