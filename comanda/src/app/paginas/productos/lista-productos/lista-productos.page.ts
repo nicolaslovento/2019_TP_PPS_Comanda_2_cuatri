@@ -64,12 +64,47 @@ export class ListaProductosPage implements OnInit {
       switch(pedido.tipo) {
         case "bebida":
         this.pedidosBebidas.push(pedido);
+
+        this.pedidosBebidas.forEach(pedidoBebidas => {
+
+          let indiceBebida: number = this.pedidosBebidas.indexOf(pedidoBebidas);
+    
+          if(pedidoBebidas.cantidad == 0)
+          {
+            this.pedidosBebidas.splice(indiceBebida,1);
+          }
+        });
+
         break;
+
         case "postre":
         this.pedidosPostres.push(pedido);
+
+        this.pedidosPostres.forEach(pedidoPostres => {
+
+          let indicePostre: number = this.pedidosPostres.indexOf(pedidoPostres);
+    
+          if(pedidoPostres.cantidad == 0)
+          {
+            this.pedidosBebidas.splice(indicePostre,1);
+          }
+        });
+
         break;
+
         case "plato":
         this.pedidosPlatos.push(pedido);
+
+        this.pedidosPlatos.forEach(pedidoPlatos => {
+
+          let indicePlato: number = this.pedidosPlatos.indexOf(pedidoPlatos);
+    
+          if(pedidoPlatos.cantidad == 0)
+          {
+            this.pedidosPlatos.splice(indicePlato,1);
+          }
+        });
+
         break;
       }
     });
