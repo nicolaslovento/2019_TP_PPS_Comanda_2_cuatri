@@ -38,19 +38,28 @@ export class MenuPage implements OnInit {
 
    cargarQrMesa() {
     let cliente=JSON.parse(localStorage.getItem('usuario'));
-    this.scannerService.iniciarScanner().then((codigoQR: any) => {
-      alert(codigoQR);
-      this.serviceFirestore.verificarCargarQrMesa(codigoQR).then((msj)=>{
 
-        this.alertService.alertBienvenida("Cargando productos...", 2000).then(()=>{
-            //this.serviceFirestore.cambiarEstadoMesa(cliente, codigoQR, true).then(()=>{ 
-              this.router.navigateByUrl('lista-productos');
-        })
-      //})
+    if(cliente.habilitado == true && cliente.esperandoMesa == true) {
+      this.scannerService.iniciarScanner().then((codigoQR: any) => {
+        alert(codigoQR);
+        this.serviceFirestore.verificarCargarQrMesa(codigoQR).then((msj)=>{
+  
+          this.alertService.alertBienvenida("Cargando productos...", 2000).then(()=>{
+              //this.serviceFirestore.cambiarEstadoMesa(cliente, codigoQR, true).then(()=>{ 
+                this.router.navigateByUrl('lista-productos');
+          })
+        //})
+        });
+      }).catch(()=>{
+        this.alertService.alertError("No se pudo leer el codigo QR");
       });
-    }).catch(()=>{
-      this.alertService.alertError("No se pudo leer el codigo QR");
-    });
+    } else if (cliente.habilitado == true && cliente.esperandoMesa == false){
+      this.alertService.alertError("Usted ya tiene una mesa asignada.");
+    } else {
+      this.alertService.alertError("Usted no está habilitado para ocupar una mesa.");
+    }
+
+    
   }
 
    
