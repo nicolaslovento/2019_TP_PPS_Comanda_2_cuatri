@@ -85,6 +85,7 @@ export class ListaProductosPage implements OnInit {
       pedidoPlatos: this.pedidosPlatos,
       pedidoBebidas: this.pedidosBebidas,
       pedidoPostres: this.pedidosPostres,
+      estado: "enviado",
     }
     this.dbService.cargarPedido(pedidoNuevo).then(()=>{
       this.alertService.alertBienvenida("Realizando pedido..",2000).then(()=>{

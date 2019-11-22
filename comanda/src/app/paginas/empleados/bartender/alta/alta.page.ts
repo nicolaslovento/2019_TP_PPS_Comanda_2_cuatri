@@ -20,6 +20,7 @@ export class AltaPage implements OnInit {
   foto2:any=""; 
   foto3:any=""; 
   error:string="";
+  tipo:string="";
 
 
   constructor(
@@ -27,6 +28,7 @@ export class AltaPage implements OnInit {
     private serviceFirestore:CloudFirestoreService,
     private alertService:AlertControllerService,
     private router:Router,
+    //private scannerService:ScannerService
   ) { }
 
   ngOnInit() {
@@ -68,6 +70,7 @@ export class AltaPage implements OnInit {
           foto1:this.foto1,
           foto2:this.foto2,
           foto3:this.foto3,
+          tipo:this.tipo,
         }
         this.serviceFirestore.cargarProducto(productoNuevo).then(()=>{
           this.alertService.alertBienvenida("Cargando producto..",2000).then(()=>{
@@ -140,7 +143,7 @@ export class AltaPage implements OnInit {
 
   irAtras(){
     this.limpiarForm();
-    this.router.navigateByUrl('menu-bartender');
+    this.router.navigateByUrl('menu-cocinero');
   }
 
   limpiarForm(){
