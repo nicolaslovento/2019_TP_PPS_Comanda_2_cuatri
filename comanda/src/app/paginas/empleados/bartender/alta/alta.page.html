@@ -67,11 +67,13 @@
     </div>
   </ion-item>
   
+  <ion-item class="input">Tipo: 
   <ion-select [(ngModel)]="tipo" name="tipo" value="plato" placeholder="Plato" okText="Aceptar" cancelText="Cancelar">
       <ion-select-option value="plato">Plato</ion-select-option>
       <ion-select-option value="bebida">Bebida</ion-select-option>
       <ion-select-option value="postre">Postre</ion-select-option>
   </ion-select>
+  </ion-item>
   
   <ion-item class="button">
       <ion-button class="btn-limpiar" type="reset" shape="round" fill="outline" expand="block" (click)="limpiarForm()" color="danger">Limpiar</ion-button>
