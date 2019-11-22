@@ -22,6 +22,10 @@ export class ListaProductosPage implements OnInit {
 
   pedidos = new Array();
 
+  pedidosBebidas = new Array();
+  pedidosPlatos = new Array();
+  pedidosPostres = new Array();
+
   constructor(
     private dbService:CloudFirestoreService,
     private router:Router,
@@ -54,16 +58,33 @@ export class ListaProductosPage implements OnInit {
       })
     })
   }
+
+  separarPedidosPorTipo() {
+    this.pedidos.forEach(pedido => {
+      switch(pedido.tipo) {
+        case "bebida":
+        this.pedidosBebidas.push(pedido);
+        break;
+        case "postre":
+        this.pedidosPostres.push(pedido);
+        break;
+        case "plato":
+        this.pedidosPlatos.push(pedido);
+        break;
+      }
+    });
+  }
   
   hacerPedido() {
     let cliente=JSON.parse(localStorage.getItem('usuario'));
+    this.separarPedidosPorTipo();
 
     let pedidoNuevo={
       total:this.total,
       cliente:(cliente.usuario).toString(),
-      pedido:this.pedidos,
-      
-      
+      pedidoPlatos: this.pedidosPlatos,
+      pedidoBebidas: this.pedidosBebidas,
+      pedidoPostres: this.pedidosPostres,
     }
     this.dbService.cargarPedido(pedidoNuevo).then(()=>{
       this.alertService.alertBienvenida("Realizando pedido..",2000).then(()=>{
@@ -103,6 +124,5 @@ export class ListaProductosPage implements OnInit {
 
   }
 
-  
 
 }

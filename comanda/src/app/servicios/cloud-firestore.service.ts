@@ -153,7 +153,9 @@ cargarPedido(pedidoNuevo: any) {
     
     total:pedidoNuevo.total,
     cliente:pedidoNuevo.cliente,
-    pedido:pedidoNuevo.pedido,
+    pedidoPlatos: pedidoNuevo.pedidoPlatos,
+    pedidoBebidas: pedidoNuevo.pedidoBebidas,
+    pedidoPostres: pedidoNuevo.pedidoPostres,
     
   }).then(()=>{
     resolve(pedidoNuevo);

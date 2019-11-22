@@ -18,10 +18,10 @@
     </ion-toolbar>
     </ion-header>
 
-<div class="content">
+  <ion-content overflow-scroll="false" class="pdts">
+  <div class="content">
 
-
-<ion-list>
+  <ion-list >
     <ion-title align="center">Platos</ion-title>
   <ion-item *ngFor="let pl of platos" class="item">
       <ion-text color="primary">
@@ -103,19 +103,20 @@
 </ion-item>
 
   </ion-list>
+
 </div>
+</ion-content>
 
-<ion-header class="barraInferior">
-    <ion-toolbar color="dark">
-     
-  
-      <ion-title align="center">Total: ${{this.total}}</ion-title>
 
-      <ion-buttons slot="end">
-          <ion-button  color="success" (click)="hacerPedido()"><ion-label>Hacer<br>pedido</ion-label></ion-button>
-      </ion-buttons>
-  
+<ion-footer>
+  <ion-toolbar color="dark" class="barraInferior">
+    <ion-title align="center">Total: ${{this.total}}</ion-title>
+
+    <ion-buttons slot="end">
+        <ion-button  color="success" (click)="hacerPedido()"><ion-label>Hacer<br>pedido</ion-label></ion-button>
+    </ion-buttons>
   </ion-toolbar>
-  </ion-header>
+</ion-footer>
+
 
 </div>
