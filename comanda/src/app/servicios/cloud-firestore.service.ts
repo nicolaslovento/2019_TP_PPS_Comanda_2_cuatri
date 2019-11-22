@@ -135,7 +135,6 @@ cargarProducto(productoNuevo:any) {
     foto1:productoNuevo.foto1,
     foto2:productoNuevo.foto1,
     foto3:productoNuevo.foto1,
-
     
   }).then(()=>{
     resolve(productoNuevo);
@@ -157,6 +156,7 @@ cargarPedido(pedidoNuevo: any) {
     pedidoPlatos: pedidoNuevo.pedidoPlatos,
     pedidoBebidas: pedidoNuevo.pedidoBebidas,
     pedidoPostres: pedidoNuevo.pedidoPostres,
+    estado: pedidoNuevo.estado,
     
   }).then(()=>{
     resolve(pedidoNuevo);
