@@ -87,10 +87,13 @@ cargarCliente(usuarioNuevo:any) {
     nombre:usuarioNuevo.nombre,
     apellido:usuarioNuevo.apellido,
     dni:usuarioNuevo.dni,
+    correo:usuarioNuevo.correo,
     foto:usuarioNuevo.foto,
     clave:usuarioNuevo.clave,
     perfil:"cliente",
-    estado:usuarioNuevo.estado
+    estado:usuarioNuevo.estado,
+    esperandoMesa:usuarioNuevo.esperandoMesa,
+    habilitado:usuarioNuevo.habilitado,
 
   }).then(()=>{
     resolve(usuarioNuevo);

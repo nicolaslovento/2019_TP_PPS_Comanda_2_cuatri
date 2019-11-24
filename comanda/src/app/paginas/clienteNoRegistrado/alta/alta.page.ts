@@ -16,6 +16,7 @@ export class AltaPage implements OnInit {
   nombre:string="";
   apellido:string="";
   usuario:string="";
+  
   foto:any="";
   clave:string="";
   error:string="";
@@ -49,6 +50,7 @@ export class AltaPage implements OnInit {
         let usuarioNuevo={
           nombre:this.nombre,
           usuario:this.usuario.toString(),
+          
           foto:this.foto,
           clave:this.clave,
           esperandoMesa:false,

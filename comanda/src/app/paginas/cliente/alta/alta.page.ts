@@ -17,6 +17,7 @@ export class AltaPage implements OnInit {
   apellido:string="";
   usuario="";
   dni="";
+  correo="";
   foto:any="";
   clave:string="";
   error:string="";
@@ -52,8 +53,10 @@ export class AltaPage implements OnInit {
           apellido:this.apellido,
           usuario:this.usuario,
           dni:this.dni.toString(),
+          correo:this.correo,
           foto:this.foto,
           clave:this.clave,
+          estado:"noAprobado"
           
         }
         this.serviceFirestore.cargarCliente(usuarioNuevo).then(()=>{

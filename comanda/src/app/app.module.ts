@@ -17,6 +17,7 @@ import { Camera } from '@ionic-native/camera/ngx';
 import { ZBar } from '@ionic-native/zbar/ngx';
 import { environment } from 'src/environments/environment';
 
+import { EmailComposer } from '@ionic-native/email-composer/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -27,6 +28,7 @@ import { environment } from 'src/environments/environment';
     SplashScreen,
     Camera,
     ZBar,
+    EmailComposer,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
