@@ -11,114 +11,135 @@ import { CloudFirestoreService } from 'src/app/servicios/cloud-firestore.service
   styleUrls: ['./menu.page.scss'],
 })
 export class MenuPage implements OnInit {
-  mesas=new Array();
-
+  mesasDisponibles = new Array();
+  mesasNoDisponibles = new Array();
   constructor(
-    private router:Router,
-    private scannerService:ScannerService,
-    private serviceFirestore:CloudFirestoreService,
-    private alertService:AlertControllerService,
-    ) { }
+    private router: Router,
+    private scannerService: ScannerService,
+    private serviceFirestore: CloudFirestoreService,
+    private alertService: AlertControllerService,
+  ) { }
 
   ngOnInit() {
-    this.cargarMesas();
+    this.cargarMesasDisponibles();
   }
 
-   
-  cargarMesas(){
-      this.serviceFirestore.traerMesas().subscribe((mesas)=>{
-        this.mesas.length=0;
-        mesas.map((mesa:any)=>{
-          if(mesa.payload.doc.data().disponible==true)
-           this.mesas.push(mesa.payload.doc.data());
-          
-        })
+
+  cargarMesasDisponibles() {
+    this.serviceFirestore.traerMesas().subscribe((mesas) => {
+      this.mesasDisponibles.length = 0;
+      mesas.map((mesa: any) => {
+        if (mesa.payload.doc.data().disponible == true)
+          this.mesasDisponibles.push(mesa.payload.doc.data());
+
       })
-   }
-
-   cargarQrMesa() {
-    let cliente=JSON.parse(localStorage.getItem('usuario'));
-
-    if(cliente.habilitado == true && cliente.esperandoMesa == true) {
-      this.scannerService.iniciarScanner().then((codigoQR: any) => {
-        alert(codigoQR);
-        this.serviceFirestore.verificarCargarQrMesa(codigoQR).then((msj)=>{
-  
-          this.alertService.alertBienvenida("Cargando productos...", 2000).then(()=>{
-              //this.serviceFirestore.cambiarEstadoMesa(cliente, codigoQR, true).then(()=>{ 
-                this.router.navigateByUrl('lista-productos');
-          })
-        //})
-        });
-      }).catch(()=>{
-        this.alertService.alertError("No se pudo leer el codigo QR");
-      });
-    } else if (cliente.habilitado == true && cliente.esperandoMesa == false){
-      this.alertService.alertError("Usted ya tiene una mesa asignada.");
-    } else {
-      this.alertService.alertError("Usted no está habilitado para ocupar una mesa.");
-    }
-
-    
+    })
   }
 
-   
+  cargarMesasOcupadas() {
+    this.serviceFirestore.traerMesas().subscribe((mesas) => {
+      this.mesasNoDisponibles.length = 0;
+      mesas.map((mesa: any) => {
+        if (mesa.payload.doc.data().disponible == false)
+          this.mesasNoDisponibles.push(mesa.payload.doc.data());
 
-   pedirMesa(){
+      })
+    })
+  }
 
-    let cliente=JSON.parse(localStorage.getItem("usuario"));
-    let mesa=false;
-    this.scannerService.iniciarScanner().then((qr:any)=>{
-      if(this.mesas.length>0){
-        for(let i=0;i<this.mesas.length;i++){
-          if(this.mesas[i].qr==qr){
-              mesa=this.mesas[i];
+
+
+
+
+  pedirMesa() {
+    let mesaDisponible = false;
+    let cliente = JSON.parse(localStorage.getItem("usuario"));
+    let mesa = false;
+    let tieneMesa = false;
+    this.scannerService.iniciarScanner().then((qr: any) => {
+
+      if (this.mesasDisponibles.length > 0) {
+
+        for (let i = 0; i < this.mesasNoDisponibles.length; i++) {
+          if (this.mesasNoDisponibles[i].usuario == cliente.usuario) {
+            tieneMesa = true;
           }
         }
-        this.serviceFirestore.verificarSiEstaHabilitado(cliente).then(()=>{
 
-          this.serviceFirestore.cambiarEstadoMesa(cliente,mesa,false).then(()=>{
+        if (!tieneMesa) {
 
-            this.alertService.alertBienvenida("Asignado mesa..",2000).then(()=>{
 
-              this.serviceFirestore.habilitarClienteParaPedirMesa(cliente,false).then(()=>{
-                  //acá cambio estado de habilitado por false, porque ya está sentado en la mesa
-                this.alertService.alertError("Mesa asignada con éxito");
-              })
+          for (let i = 0; i < this.mesasDisponibles.length; i++) {
+            if (this.mesasDisponibles[i].qr == qr) {
+              mesa = this.mesasDisponibles[i];
+              mesaDisponible = true;
+            }
+          }
+
+
+
+
+
+          if (mesaDisponible) {
+
+
+
+            this.serviceFirestore.verificarSiEstaHabilitado(cliente).then(() => {
+
+              this.serviceFirestore.cambiarEstadoMesa(cliente, mesa, false).then(() => {
+
+                this.alertService.alertMensajeConTiempo("Asignado mesa..", 2000).then(() => {
+
+                  this.serviceFirestore.habilitarClienteParaPedirMesa(cliente, true).then(() => {
+                    //acá cambio estado de habilitado por false, porque ya está sentado en la mesa
+                    this.alertService.alertError("Mesa asignada con éxito").then(() => {
+
+                      this.alertService.alertMensajeConTiempo("Cargando productos...", 2000).then(() => {
+
+                        this.router.navigateByUrl('lista-productos');
+                      })
+                    });
+                  })
+                });
+              });
+            }).catch(() => {
+              this.alertService.alertError("No está habilitado para pedir una mesa.");
             });
-          });
-        }).catch(()=>{
-          this.alertService.alertError("No está habilitado para pedir una mesa.");
-        });
 
-      }else{
-        this.alertService.alertError("La mesa está ocupada");
+          } else {
+            this.alertService.alertError("La mesa está ocupada.");
+          }
+        } else {
+          this.alertService.alertError("usted ya tiene una mesa asignada.");
+        }
+      } else {
+        this.alertService.alertError("La mesas están ocupadas.");
       }
     })
-        
-    
+
+
   }
 
-  
 
-  ingresarAlLocal(){
-    let cliente=JSON.parse(localStorage.getItem('usuario'));
-      this.scannerService.iniciarScanner().then((codigoQR:any)=>{
-        alert(codigoQR);
-        this.serviceFirestore.verificarIngresoAlRestaurante(codigoQR).then((msj)=>{
 
-          this.alertService.alertBienvenida("Ingresando al local..",2000).then(()=>{
-              this.serviceFirestore.cambiarEstadoDeEspera(cliente,true).then(()=>{
-                this.alertService.alertBienvenida("Poniendo en lista de espera..",2000).then(()=>{
-                  this.router.navigateByUrl('menu-clienteNoRegistrado');
-                })
-              })
+  ingresarAlLocal() {
+    let cliente = JSON.parse(localStorage.getItem('usuario'));
+    this.scannerService.iniciarScanner().then((codigoQR: any) => {
+      alert(codigoQR);
+      this.serviceFirestore.verificarIngresoAlRestaurante(codigoQR).then((msj) => {
+
+        this.alertService.alertBienvenida("Ingresando al local..", 2000).then(() => {
+          this.serviceFirestore.cambiarEstadoDeEspera(cliente, true).then(() => {
+            this.alertService.alertBienvenida("Poniendo en lista de espera..", 2000).then(() => {
+              this.router.navigateByUrl('menu-clienteNoRegistrado');
+            })
           })
-        });
-      }).catch((error)=>{
-        this.alertService.alertError("No se pudo leer el codigo QR");
+        })
       });
-    }   
-    
- 
+    }).catch((error) => {
+      this.alertService.alertError("No se pudo leer el codigo QR");
+    });
+  }
+
+
 }

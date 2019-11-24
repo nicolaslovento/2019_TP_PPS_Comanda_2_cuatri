@@ -13,7 +13,30 @@ export class AlertControllerService {
 
   constructor(public alertController: AlertController) { }
 
+/*Mensaje normal (sin bienvenido!) y con tiempo*/
+  async alertMensajeConTiempo(mensaje:string,tiempo){
 
+    var alert = await this.alertController.create({
+
+      
+      mode:"md",
+      message: '<b align=center>'+mensaje+'</b>&nbsp;&nbsp;<ion-spinner name="bubbles"></ion-spinner>'
+     
+        
+    });
+
+    await alert.present();
+    return new Promise((resolve,reject)=>{
+
+      timer(tiempo).subscribe(()=>{
+
+        this.alertController.dismiss();
+        resolve();
+
+      });
+
+    })
+  }
   
 /*
   Despliega un alert de error indicando mensaje.
