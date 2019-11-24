@@ -82,5 +82,30 @@ export class AlertControllerService {
 
     })
   }
+
+    /*
+  Despliega un alert indicando mensaje y tiempo.
+  */
+ async alertComun(mensaje:string, tiempo){
+
+  var alert = await this.alertController.create({
+
+    //header: 'Bienvenido!',
+    mode:"md",
+    message: '<b align=center>'+mensaje+'</b>'  
+  });
+
+  await alert.present();
+  return new Promise((resolve,reject)=>{
+
+    timer(tiempo).subscribe(()=>{
+
+      this.alertController.dismiss();
+      resolve();
+
+    });
+
+  })
+}
   
 }
