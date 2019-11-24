@@ -7,9 +7,18 @@
         </ion-buttons>
     
         <ion-buttons slot="start">
-          <ion-button (click)="this.router.navigateByUrl('menu-cliente')">
+
+          <div *ngIf="this.tipoPerfil() == 'cliente'">
+          <ion-button  (click)="this.router.navigateByUrl('menu-cliente')">
             <ion-icon name="arrow-round-back"></ion-icon>
           </ion-button>
+          </div>
+
+          <div *ngIf="this.tipoPerfil() == 'clienteAnonimo'">
+          <ion-button  (click)="this.router.navigateByUrl('menu-clienteNoRegistrado')">
+            <ion-icon name="arrow-round-back"></ion-icon>
+          </ion-button>
+          </div>
     
         </ion-buttons>
     

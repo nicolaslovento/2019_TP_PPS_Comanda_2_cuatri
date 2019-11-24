@@ -13,6 +13,7 @@ import { isNullOrUndefined } from 'util';
 export class ListaProductosPage implements OnInit {
 
   productos=new Array();
+  mesas=new Array();
 
   platos=new Array();
   bebidas=new Array();
@@ -25,6 +26,10 @@ export class ListaProductosPage implements OnInit {
   pedidosBebidas = new Array();
   pedidosPlatos = new Array();
   pedidosPostres = new Array();
+
+  estadoPlatos: string = "";
+  estadoBebidas: string = "";
+  estadoPostres: string = "";
 
   constructor(
     private dbService:CloudFirestoreService,
@@ -67,13 +72,19 @@ export class ListaProductosPage implements OnInit {
 
         this.pedidosBebidas.forEach(pedidoBebidas => {
 
-          let indiceBebida: number = this.pedidosBebidas.indexOf(pedidoBebidas);
-    
-          if(pedidoBebidas.cantidad == 0)
-          {
-            this.pedidosBebidas.splice(indiceBebida,1);
-          }
+        let indiceBebida: number = this.pedidosBebidas.indexOf(pedidoBebidas);
+  
+        if(pedidoBebidas.cantidad == 0)
+        {
+          this.pedidosBebidas.splice(indiceBebida,1);
+        }
         });
+
+        if(this.pedidosBebidas.length == 0) {
+          this.estadoBebidas = "sinPedir";
+        } else {
+          this.estadoBebidas = "recibidoMozo";
+        }
 
         break;
 
@@ -82,13 +93,19 @@ export class ListaProductosPage implements OnInit {
 
         this.pedidosPostres.forEach(pedidoPostres => {
 
-          let indicePostre: number = this.pedidosPostres.indexOf(pedidoPostres);
-    
-          if(pedidoPostres.cantidad == 0)
-          {
-            this.pedidosBebidas.splice(indicePostre,1);
-          }
+        let indicePostre: number = this.pedidosPostres.indexOf(pedidoPostres);
+  
+        if(pedidoPostres.cantidad == 0)
+        {
+          this.pedidosBebidas.splice(indicePostre,1);
+        }
         });
+
+        if(this.pedidosPostres.length == 0) {
+          this.estadoPostres = "sinPedir";
+        } else {
+          this.estadoBebidas = "recibidoMozo";
+        }
 
         break;
 
@@ -97,13 +114,19 @@ export class ListaProductosPage implements OnInit {
 
         this.pedidosPlatos.forEach(pedidoPlatos => {
 
-          let indicePlato: number = this.pedidosPlatos.indexOf(pedidoPlatos);
-    
-          if(pedidoPlatos.cantidad == 0)
-          {
-            this.pedidosPlatos.splice(indicePlato,1);
-          }
+        let indicePlato: number = this.pedidosPlatos.indexOf(pedidoPlatos);
+  
+        if(pedidoPlatos.cantidad == 0)
+        {
+          this.pedidosPlatos.splice(indicePlato,1);
+        }
         });
+
+        if(this.pedidosPlatos.length == 0) {
+          this.estadoPlatos = "sinPedir";
+        } else {
+          this.estadoPlatos = "recibidoMozo";
+        }
 
         break;
       }
@@ -112,15 +135,40 @@ export class ListaProductosPage implements OnInit {
   
   hacerPedido() {
     let cliente=JSON.parse(localStorage.getItem('usuario'));
+    let mesaActual:string = "";
+
+    this.dbService.traerMesas().subscribe((mesas)=>{
+      this.mesas.length=0;
+      mesas.map((mesa:any)=>{
+        this.mesas.push(mesa.payload.doc.data());
+      })
+    });
+
+    for(let i=0; i<=this.mesas.length; i++) {
+
+      if(this.mesas[i].usuario == cliente.usuario)
+      {
+        mesaActual = this.mesas[i].qr;
+        break;
+      }
+    }
+    
     this.separarPedidosPorTipo();
 
     let pedidoNuevo={
       total:this.total,
       cliente:(cliente.usuario).toString(),
+      mesa: mesaActual,
       pedidoPlatos: this.pedidosPlatos,
       pedidoBebidas: this.pedidosBebidas,
       pedidoPostres: this.pedidosPostres,
-      estado: "enviado",
+      estado: "recibidoMozo",
+      estadoPlatos: this.estadoPlatos,
+      estadoBebidas: this.estadoBebidas,
+      estadoPostres: this.estadoPostres,
+      descuento: 0,
+      propina: 0,
+
     }
     this.dbService.cargarPedido(pedidoNuevo).then(()=>{
       this.alertService.alertBienvenida("Realizando pedido..",2000).then(()=>{
@@ -149,7 +197,7 @@ export class ListaProductosPage implements OnInit {
     }
 
     if(flag == 0) {
-      this.pedidos.push({"tipo":producto.tipo,"cantidad":cantidad,"nombre":producto.nombre,"precio":(producto.precio*cantidad)});
+      this.pedidos.push({"foto":producto.foto,"tiempoElaboracion":producto.tiempoElaboracion,"tipo":producto.tipo,"cantidad":cantidad,"nombre":producto.nombre,"precio":(producto.precio*cantidad)});
     }
 
     this.total = 0;
@@ -160,5 +208,9 @@ export class ListaProductosPage implements OnInit {
 
   }
 
+  tipoPerfil() {
+    let cliente=JSON.parse(localStorage.getItem('usuario'));
+    return cliente.perfil;
+  }
 
 }
