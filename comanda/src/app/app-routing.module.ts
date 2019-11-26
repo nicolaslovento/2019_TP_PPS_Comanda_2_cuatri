@@ -18,20 +18,27 @@ const routes: Routes = [
 //paginas cocinero
   { path: 'menu-cocinero', loadChildren: './paginas/empleados/cocinero/menu/menu.module#MenuPageModule' },
   { path: 'alta-cocinero', loadChildren: './paginas/empleados/cocinero/alta/alta.module#AltaPageModule' },
+  { path: 'pedidos-cocinero', loadChildren: './paginas/empleados/cocinero/pedidos-cocinero/pedidos-cocinero.module#PedidosCocineroPageModule' },
 //paginas bartender
   { path: 'alta-bartender', loadChildren: './paginas/empleados/bartender/alta/alta.module#AltaPageModule' },
   { path: 'menu-bartender', loadChildren: './paginas/empleados/bartender/menu/menu.module#MenuPageModule' },
+  { path: 'pedidos-bartender', loadChildren: './paginas/empleados/bartender/pedidos-bartender/pedidos-bartender.module#PedidosBartenderPageModule' },
 //paginas clienteRegistrado
   { path: 'menu-cliente', loadChildren: './paginas/cliente/menu/menu.module#MenuPageModule' },
   { path: 'alta-cliente', loadChildren: './paginas/cliente/alta/alta.module#AltaPageModule' },
 //paginas mozo
-  { path: 'alta-mozo', loadChildren: './paginas/empleados/mozo/alta/alta.module#AltaPageModule' },
-  { path: 'menu-mozo', loadChildren: './paginas/empleados/mozo/menu/menu.module#MenuPageModule' },
+ { path: 'menu-mozo', loadChildren: './paginas/empleados/mozo/menu/menu.module#MenuPageModule' },
+ 
 //paginas clienteNoRegistrado
   { path: 'alta-clienteNoRegistrado', loadChildren: './paginas/clienteNoRegistrado/alta/alta.module#AltaPageModule' },
   { path: 'menu-clienteNoRegistrado', loadChildren: './paginas/clienteNoRegistrado/menu/menu.module#MenuPageModule' },
   
   { path: 'lista-productos', loadChildren: './paginas/productos/lista-productos/lista-productos.module#ListaProductosPageModule' },
+  
+
+  
+ 
+
 
 
  

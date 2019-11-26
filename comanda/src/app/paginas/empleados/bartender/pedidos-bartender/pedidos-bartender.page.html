@@ -1,0 +1,57 @@
+<div class="screen">
+    <ion-header>
+      <ion-toolbar color="dark">
+        <ion-buttons slot="end">
+          <ion-button color="danger" (click)="this.router.navigateByUrl('')">
+            <ion-label>Cerrar<br>sesion</ion-label>
+            <ion-icon name="log-out"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+  
+        <ion-title align="center">Pedidos</ion-title>
+  
+      </ion-toolbar>
+    </ion-header>
+  
+  
+  
+  
+  
+    <ion-list>
+  
+  
+  
+      <div *ngFor="let p of pedidos" class="pedido">
+        <div *ngIf="p.estado=='recibidoEmpleado' || p.estado=='enPreparacion'">
+          
+              
+        <div *ngIf="p.pedidoBebidas.length>0">
+          <ion-item>
+            <ion-title align="start">Bebidas</ion-title>
+          </ion-item>
+  
+          <div *ngFor="let b of p.pedidoBebidas">
+  
+            <ion-item>
+              <ion-text>{{b.nombre}} x {{b.cantidad}}</ion-text>
+            </ion-item>
+          </div>
+        </div>
+  
+  
+        <ion-item class="estados">
+            <div *ngIf="p.estado=='recibidoEmpleado'"><ion-button color="success" (click)="modificarPedido(p,1)">Comenzar a preparar</ion-button></div>
+            <div *ngIf="p.estado=='enPreparacion'"><ion-button color="danger" (click)="modificarPedido(p,2)">Pedido terminado</ion-button></div>
+        </ion-item>
+  
+      </div>
+      </div>
+  </ion-list>
+  
+  
+  
+  
+  
+  
+  
+  </div>

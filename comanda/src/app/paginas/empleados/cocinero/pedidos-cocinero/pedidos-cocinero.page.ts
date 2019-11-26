@@ -3,11 +3,12 @@ import { Router } from '@angular/router';
 import { CloudFirestoreService } from 'src/app/servicios/cloud-firestore.service';
 
 @Component({
-  selector: 'app-menu',
-  templateUrl: './menu.page.html',
-  styleUrls: ['./menu.page.scss'],
+  selector: 'app-pedidos-cocinero',
+  templateUrl: './pedidos-cocinero.page.html',
+  styleUrls: ['./pedidos-cocinero.page.scss'],
 })
-export class MenuPage implements OnInit {
+export class PedidosCocineroPage implements OnInit {
+
   pedidos = new Array();
 
   constructor(private router: Router,
@@ -28,33 +29,26 @@ export class MenuPage implements OnInit {
     })
   }
 
-
-
   modificarPedido(p: any, eleccion: number) {
     switch (eleccion) {
 
       case 1:
-        this.serviceFirestore.cambiarEstadoDePedido(p, "recibidoEmpleado").then(() => {
+        this.serviceFirestore.cambiarEstadoDePedido(p, "enPreparacion").then(() => {
 
         })
 
         break;
       case 2:
-        this.serviceFirestore.cambiarEstadoDePedido(p, "servido").then(() => {
+        this.serviceFirestore.cambiarEstadoDePlatosYPostres(p, "terminado").then(() => {
+          this.serviceFirestore.verificarSiLosProductosEstanListos(p).then(()=>{
+            this.serviceFirestore.cambiarEstadoDePedido(p, "terminado").then(() => {
 
+            })
+          })
         })
 
         break;
     }
   }
 
-  irAtras() {
-    localStorage.clear();
-    this.router.navigateByUrl('home');
-  }
-
-  cerrarSesion() {
-    localStorage.clear();
-    this.router.navigateByUrl('home');
-  }
 }

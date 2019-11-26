@@ -157,7 +157,7 @@ export class ListaProductosPage implements OnInit {
 
     let pedidoNuevo={
       total:this.total,
-      cliente:(cliente.usuario).toString(),
+      cliente:cliente.usuario,
       mesa: mesaActual,
       pedidoPlatos: this.pedidosPlatos,
       pedidoBebidas: this.pedidosBebidas,
@@ -167,9 +167,10 @@ export class ListaProductosPage implements OnInit {
       estadoBebidas: this.estadoBebidas,
       estadoPostres: this.estadoPostres,
       descuento: 0,
-      propina: 0,
+      propina: 0
 
     }
+    alert(JSON.stringify(pedidoNuevo));
     this.dbService.cargarPedido(pedidoNuevo).then(()=>{
       this.alertService.alertBienvenida("Realizando pedido..",2000).then(()=>{
         this.router.navigateByUrl('menu-cliente');
@@ -197,7 +198,7 @@ export class ListaProductosPage implements OnInit {
     }
 
     if(flag == 0) {
-      this.pedidos.push({"foto":producto.foto,"tiempoElaboracion":producto.tiempoElaboracion,"tipo":producto.tipo,"cantidad":cantidad,"nombre":producto.nombre,"precio":(producto.precio*cantidad)});
+      this.pedidos.push({"tipo":producto.tipo,"cantidad":cantidad,"nombre":producto.nombre,"precio":(producto.precio*cantidad)});
     }
 
     this.total = 0;
