@@ -105,7 +105,7 @@ export class ListaProductosPage implements OnInit {
         if(this.pedidosPostres.length == 0) {
           this.estadoPostres = "terminado";
         } else {
-          this.estadoBebidas = "noTerminado";
+          this.estadoPostres = "noTerminado";
         }
 
         break;
