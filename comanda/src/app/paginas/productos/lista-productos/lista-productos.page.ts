@@ -27,9 +27,9 @@ export class ListaProductosPage implements OnInit {
   pedidosPlatos = new Array();
   pedidosPostres = new Array();
 
-  estadoPlatos: string = "";
-  estadoBebidas: string = "";
-  estadoPostres: string = "";
+  estadoPlatos: string = "terminado";
+  estadoBebidas: string = "terminado";
+  estadoPostres: string = "terminado";
 
   constructor(
     private dbService:CloudFirestoreService,
@@ -81,9 +81,9 @@ export class ListaProductosPage implements OnInit {
         });
 
         if(this.pedidosBebidas.length == 0) {
-          this.estadoBebidas = "sinPedir";
+          this.estadoBebidas = "terminado";
         } else {
-          this.estadoBebidas = "recibidoMozo";
+          this.estadoBebidas = "noTerminado";
         }
 
         break;
@@ -102,9 +102,9 @@ export class ListaProductosPage implements OnInit {
         });
 
         if(this.pedidosPostres.length == 0) {
-          this.estadoPostres = "sinPedir";
+          this.estadoPostres = "terminado";
         } else {
-          this.estadoBebidas = "recibidoMozo";
+          this.estadoBebidas = "noTerminado";
         }
 
         break;
@@ -123,9 +123,9 @@ export class ListaProductosPage implements OnInit {
         });
 
         if(this.pedidosPlatos.length == 0) {
-          this.estadoPlatos = "sinPedir";
+          this.estadoPlatos = "terminado";
         } else {
-          this.estadoPlatos = "recibidoMozo";
+          this.estadoPlatos = "noTerminado";
         }
 
         break;
@@ -144,7 +144,7 @@ export class ListaProductosPage implements OnInit {
       })
     });
 
-    for(let i=0; i<=this.mesas.length; i++) {
+    for(let i=0; i<this.mesas.length; i++) {
 
       if(this.mesas[i].usuario == cliente.usuario)
       {
@@ -152,7 +152,7 @@ export class ListaProductosPage implements OnInit {
         break;
       }
     }
-    
+
     this.separarPedidosPorTipo();
 
     let pedidoNuevo={
@@ -162,7 +162,7 @@ export class ListaProductosPage implements OnInit {
       pedidoPlatos: this.pedidosPlatos,
       pedidoBebidas: this.pedidosBebidas,
       pedidoPostres: this.pedidosPostres,
-      estado: "recibidoMozo",
+      estado: "noTerminado",
       estadoPlatos: this.estadoPlatos,
       estadoBebidas: this.estadoBebidas,
       estadoPostres: this.estadoPostres,
@@ -170,7 +170,7 @@ export class ListaProductosPage implements OnInit {
       propina: 0
 
     }
-    alert(JSON.stringify(pedidoNuevo));
+   
     this.dbService.cargarPedido(pedidoNuevo).then(()=>{
       this.alertService.alertBienvenida("Realizando pedido..",2000).then(()=>{
         this.router.navigateByUrl('menu-cliente');
@@ -198,7 +198,11 @@ export class ListaProductosPage implements OnInit {
     }
 
     if(flag == 0) {
+<<<<<<< HEAD
       this.pedidos.push({"tipo":producto.tipo,"cantidad":cantidad,"nombre":producto.nombre,"precio":(producto.precio*cantidad)});
+=======
+      this.pedidos.push({"foto":producto.foto1,"tiempoElaboracion":producto.tiempoElab,"tipo":producto.tipo,"cantidad":cantidad,"nombre":producto.nombre,"precio":(producto.precio*cantidad)});
+>>>>>>> aa2f53e6ea04fc7e89a4cb989063dd7754383cc9
     }
 
     this.total = 0;
