@@ -27,9 +27,9 @@ export class ListaProductosPage implements OnInit {
   pedidosPlatos = new Array();
   pedidosPostres = new Array();
 
-  estadoPlatos: string = "";
-  estadoBebidas: string = "";
-  estadoPostres: string = "";
+  estadoPlatos: string = "sinPedir";
+  estadoBebidas: string = "sinPedir";
+  estadoPostres: string = "sinPedir";
 
   constructor(
     private dbService:CloudFirestoreService,
@@ -144,15 +144,14 @@ export class ListaProductosPage implements OnInit {
       })
     });
 
-    for(let i=0; i<=this.mesas.length; i++) {
-
-      if(this.mesas[i].usuario == cliente.usuario)
+    for(let i=0; i<this.mesas.length; i++) {
+      if((this.mesas[i]).usuario == cliente.usuario)
       {
         mesaActual = this.mesas[i].qr;
         break;
       }
     }
-    
+
     this.separarPedidosPorTipo();
 
     let pedidoNuevo={
@@ -168,8 +167,10 @@ export class ListaProductosPage implements OnInit {
       estadoPostres: this.estadoPostres,
       descuento: 0,
       propina: 0,
-
     }
+
+    console.log(pedidoNuevo);
+
     this.dbService.cargarPedido(pedidoNuevo).then(()=>{
       this.alertService.alertBienvenida("Realizando pedido..",2000).then(()=>{
         this.router.navigateByUrl('menu-cliente');
@@ -197,7 +198,7 @@ export class ListaProductosPage implements OnInit {
     }
 
     if(flag == 0) {
-      this.pedidos.push({"foto":producto.foto,"tiempoElaboracion":producto.tiempoElaboracion,"tipo":producto.tipo,"cantidad":cantidad,"nombre":producto.nombre,"precio":(producto.precio*cantidad)});
+      this.pedidos.push({"foto":producto.foto1,"tiempoElaboracion":producto.tiempoElab,"tipo":producto.tipo,"cantidad":cantidad,"nombre":producto.nombre,"precio":(producto.precio*cantidad)});
     }
 
     this.total = 0;
