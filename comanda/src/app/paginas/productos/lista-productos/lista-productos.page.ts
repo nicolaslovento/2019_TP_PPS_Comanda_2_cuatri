@@ -27,9 +27,9 @@ export class ListaProductosPage implements OnInit {
   pedidosPlatos = new Array();
   pedidosPostres = new Array();
 
-  estadoPlatos: string = "sinPedir";
-  estadoBebidas: string = "sinPedir";
-  estadoPostres: string = "sinPedir";
+  estadoPlatos: string = "terminado";
+  estadoBebidas: string = "terminado";
+  estadoPostres: string = "terminado";
 
   constructor(
     private dbService:CloudFirestoreService,
@@ -81,9 +81,9 @@ export class ListaProductosPage implements OnInit {
         });
 
         if(this.pedidosBebidas.length == 0) {
-          this.estadoBebidas = "sinPedir";
+          this.estadoBebidas = "terminado";
         } else {
-          this.estadoBebidas = "recibidoMozo";
+          this.estadoBebidas = "noTerminado";
         }
 
         break;
@@ -102,9 +102,9 @@ export class ListaProductosPage implements OnInit {
         });
 
         if(this.pedidosPostres.length == 0) {
-          this.estadoPostres = "sinPedir";
+          this.estadoPostres = "terminado";
         } else {
-          this.estadoBebidas = "recibidoMozo";
+          this.estadoBebidas = "noTerminado";
         }
 
         break;
@@ -123,9 +123,9 @@ export class ListaProductosPage implements OnInit {
         });
 
         if(this.pedidosPlatos.length == 0) {
-          this.estadoPlatos = "sinPedir";
+          this.estadoPlatos = "terminado";
         } else {
-          this.estadoPlatos = "recibidoMozo";
+          this.estadoPlatos = "noTerminado";
         }
 
         break;
@@ -145,7 +145,8 @@ export class ListaProductosPage implements OnInit {
     });
 
     for(let i=0; i<this.mesas.length; i++) {
-      if((this.mesas[i]).usuario == cliente.usuario)
+
+      if(this.mesas[i].usuario == cliente.usuario)
       {
         mesaActual = this.mesas[i].qr;
         break;
@@ -161,7 +162,7 @@ export class ListaProductosPage implements OnInit {
       pedidoPlatos: this.pedidosPlatos,
       pedidoBebidas: this.pedidosBebidas,
       pedidoPostres: this.pedidosPostres,
-      estado: "recibidoMozo",
+      estado: "noTerminado",
       estadoPlatos: this.estadoPlatos,
       estadoBebidas: this.estadoBebidas,
       estadoPostres: this.estadoPostres,
@@ -169,7 +170,7 @@ export class ListaProductosPage implements OnInit {
       propina: 0,
     }
 
-    console.log(pedidoNuevo);
+    //console.log(pedidoNuevo);
 
     this.dbService.cargarPedido(pedidoNuevo).then(()=>{
       this.alertService.alertBienvenida("Realizando pedido..",2000).then(()=>{
