@@ -33,14 +33,18 @@ export class PedidosCocineroPage implements OnInit {
     switch (eleccion) {
 
       case 1:
-        this.serviceFirestore.cambiarEstadoDePedido(p, "enPreparacion").then(() => {
+        this.serviceFirestore.cambiarEstadoDePlatosYPostres(p, "enPreparacion").then(() => {
+          this.serviceFirestore.verificarSiLosProductosEstanPreparandose(p).then(()=>{
+            this.serviceFirestore.cambiarEstadoDePedido(p, "enPreparacion").then(() => {
 
+            })
+          })
         })
 
         break;
       case 2:
         this.serviceFirestore.cambiarEstadoDePlatosYPostres(p, "terminado").then(() => {
-          this.serviceFirestore.verificarSiLosProductosEstanListos(p).then(()=>{
+          this.serviceFirestore.verificarSiLosProductosEstanTerminados(p).then(()=>{
             this.serviceFirestore.cambiarEstadoDePedido(p, "terminado").then(() => {
 
             })

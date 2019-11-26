@@ -15,22 +15,28 @@
 
 
 
+ 
+  <ion-content overflow-scroll="false" class="pdts">
+  <ion-list >
 
-
-  <ion-list>
-
-
+      
 
     <div *ngFor="let p of pedidos" class="pedido">
       <div *ngIf="p.estado!='servido'">
+          <ion-item>
+              <ion-title align="center">{{p.mesa}}</ion-title>
+            </ion-item>
         <div *ngIf="p.pedidoPlatos.length>0">
             <ion-item>
               <ion-title align="start">Platos</ion-title>
             </ion-item>
     
             <div *ngFor="let b of p.pedidoPlatos">
-    
+                
               <ion-item>
+                  <ion-avatar slot="start">
+                      <img src={{b.foto}} width="80px" height="80px"> 
+                  </ion-avatar>
                 <ion-text>{{b.nombre}} x {{b.cantidad}} = ${{b.precio}}</ion-text>
               </ion-item>
             </div>
@@ -45,8 +51,11 @@
           </ion-item>
   
           <div *ngFor="let b of p.pedidoBebidas">
-  
+              
             <ion-item>
+                <ion-avatar slot="start">
+                    <img src={{b.foto}} width="80px" height="80px"> 
+                </ion-avatar>
               <ion-text>{{b.nombre}} x {{b.cantidad}} = ${{b.precio}}</ion-text>
             </ion-item>
           </div>
@@ -60,8 +69,11 @@
         </ion-item>
 
         <div *ngFor="let b of p.pedidoPostres">
-
+            
           <ion-item>
+              <ion-avatar slot="start">
+                  <img src={{b.foto}} width="80px" height="80px"> 
+              </ion-avatar>
             <ion-text>{{b.nombre}} x {{b.cantidad}} = ${{b.precio}}</ion-text>
           </ion-item>
         </div>
@@ -77,8 +89,9 @@
 
     </div>
     </div>
+  
 </ion-list>
-
+</ion-content>
 
 
 

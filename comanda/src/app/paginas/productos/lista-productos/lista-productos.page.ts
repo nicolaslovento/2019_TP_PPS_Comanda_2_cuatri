@@ -40,6 +40,7 @@ export class ListaProductosPage implements OnInit {
 
   ngOnInit() {
     this.cargarListaProductos();
+    this.cargarMesas();
   }
 
   cargarListaProductos(){
@@ -132,17 +133,21 @@ export class ListaProductosPage implements OnInit {
       }
     });
   }
-  
-  hacerPedido() {
-    let cliente=JSON.parse(localStorage.getItem('usuario'));
-    let mesaActual:string = "";
 
+  cargarMesas(){
     this.dbService.traerMesas().subscribe((mesas)=>{
       this.mesas.length=0;
       mesas.map((mesa:any)=>{
         this.mesas.push(mesa.payload.doc.data());
       })
     });
+  }
+  
+  hacerPedido() {
+    let cliente=JSON.parse(localStorage.getItem('usuario'));
+    let mesaActual:string = "";
+
+    
 
     for(let i=0; i<this.mesas.length; i++) {
 
@@ -152,7 +157,7 @@ export class ListaProductosPage implements OnInit {
         break;
       }
     }
-
+    
     this.separarPedidosPorTipo();
 
     let pedidoNuevo={
@@ -162,7 +167,7 @@ export class ListaProductosPage implements OnInit {
       pedidoPlatos: this.pedidosPlatos,
       pedidoBebidas: this.pedidosBebidas,
       pedidoPostres: this.pedidosPostres,
-      estado: "noTerminado",
+      estado: "recibidoMozo",
       estadoPlatos: this.estadoPlatos,
       estadoBebidas: this.estadoBebidas,
       estadoPostres: this.estadoPostres,
@@ -170,7 +175,7 @@ export class ListaProductosPage implements OnInit {
       propina: 0
 
     }
-   
+    alert(pedidoNuevo);
     this.dbService.cargarPedido(pedidoNuevo).then(()=>{
       this.alertService.alertBienvenida("Realizando pedido..",2000).then(()=>{
         this.router.navigateByUrl('menu-cliente');
@@ -198,11 +203,7 @@ export class ListaProductosPage implements OnInit {
     }
 
     if(flag == 0) {
-<<<<<<< HEAD
-      this.pedidos.push({"tipo":producto.tipo,"cantidad":cantidad,"nombre":producto.nombre,"precio":(producto.precio*cantidad)});
-=======
       this.pedidos.push({"foto":producto.foto1,"tiempoElaboracion":producto.tiempoElab,"tipo":producto.tipo,"cantidad":cantidad,"nombre":producto.nombre,"precio":(producto.precio*cantidad)});
->>>>>>> aa2f53e6ea04fc7e89a4cb989063dd7754383cc9
     }
 
     this.total = 0;

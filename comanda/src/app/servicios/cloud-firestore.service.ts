@@ -414,7 +414,7 @@ export class CloudFirestoreService {
 
   }
 
-  async verificarSiLosProductosEstanListos(p: any) {
+  async verificarSiLosProductosEstanTerminados(p: any) {
     let existe = 0;
     let terminado = 0;
     return new Promise((resolve, rejected) => {
@@ -440,6 +440,45 @@ export class CloudFirestoreService {
         }
         
         if(existe==terminado){
+          resolve();
+        }else{
+          rejected();
+        }
+
+      })
+
+      
+    })
+
+  }
+
+
+  async verificarSiLosProductosEstanPreparandose(p: any) {
+    let existe = 0;
+    let enPreparacion = 0;
+    return new Promise((resolve, rejected) => {
+      this.dbFirestore.collection('pedidos').doc(p.cliente).get().subscribe((pedido) => {
+        
+        if (pedido.data().estadoPlatos) {
+          existe++;
+          if (pedido.data().estadoPlatos === "enPreparacion" || pedido.data().estadoPlatos === "terminado") {
+            enPreparacion++;
+          }
+        }
+        if (pedido.data().estadoPostres) {
+          existe++;
+          if (pedido.data().estadoPostres === "enPreparacion" || pedido.data().estadoPostres === "terminado") {
+            enPreparacion++;
+          }
+        }
+        if (pedido.data().estadoBebidas) {
+          existe++;
+          if (pedido.data().estadoBebidas === "enPreparacion" || pedido.data().estadoBebidas === "terminado") {
+            enPreparacion++;
+          }
+        }
+        
+        if(existe==enPreparacion){
           resolve();
         }else{
           rejected();

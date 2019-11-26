@@ -15,7 +15,7 @@
   
   
   
-  
+    <ion-content overflow-scroll="false" class="pdts">
   
     <ion-list>
   
@@ -33,6 +33,9 @@
           <div *ngFor="let b of p.pedidoBebidas">
   
             <ion-item>
+                <ion-avatar slot="start">
+                    <img src={{b.foto}} width="80px" height="80px"> 
+                </ion-avatar>
               <ion-text>{{b.nombre}} x {{b.cantidad}}</ion-text>
             </ion-item>
           </div>
@@ -40,15 +43,15 @@
   
   
         <ion-item class="estados">
-            <div *ngIf="p.estado=='recibidoEmpleado'"><ion-button color="success" (click)="modificarPedido(p,1)">Comenzar a preparar</ion-button></div>
-            <div *ngIf="p.estado=='enPreparacion'"><ion-button color="danger" (click)="modificarPedido(p,2)">Pedido terminado</ion-button></div>
+            <div *ngIf="p.estadoBebidas=='noTerminado'"><ion-button color="success" (click)="modificarPedido(p,1)">Comenzar a preparar</ion-button></div>
+            <div *ngIf="p.estadoBebidas=='enPreparacion' "><ion-button color="danger" (click)="modificarPedido(p,2)">Pedido terminado</ion-button></div>
         </ion-item>
   
       </div>
       </div>
   </ion-list>
   
-  
+ </ion-content>
   
   
   
