@@ -324,7 +324,8 @@ export class CloudFirestoreService {
 
       this.dbFirestore.collection("mesas").doc(mesa.qr).update({
         usuario: cliente.usuario,
-        disponible: estado
+        disponible: estado,
+        estado:"1"
 
       }).then(() => {
         resolve("Se asignó")
