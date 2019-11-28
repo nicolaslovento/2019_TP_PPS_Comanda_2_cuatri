@@ -45,7 +45,7 @@ export class Menu2Page implements OnInit {
   }
 
   pedirCuenta() {
-    
+    this.serviceFirestore.cambiarEstadoDePedido(this.pedidos[0],'cuentaPedida');
   }
 
   irAtras() {
