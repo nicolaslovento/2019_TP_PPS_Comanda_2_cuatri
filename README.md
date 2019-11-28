@@ -46,4 +46,4 @@ Lector de DNI<br></b>
 <br>
 <br>
 <h3>QRs:</h3>
-<img src="https://github.com/nicolaslovento/2019_TP_PPS_Comanda_2_cuatri/blob/master/qrsComanda.pnghttps://github.com/nicolaslovento/2019_TP_PPS_Comanda_2_cuatri/blob/master/qrsComanda.png"/>
+<img src="https://github.com/nicolaslovento/2019_TP_PPS_Comanda_2_cuatri/blob/master/qrsComanda.png"/>
