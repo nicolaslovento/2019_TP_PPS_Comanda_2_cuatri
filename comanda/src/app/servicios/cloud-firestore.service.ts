@@ -354,31 +354,12 @@ export class CloudFirestoreService {
 
   }
 
-  async verificarSiEstaHabilitado(cliente: any) {
-
-    return new Promise((resolve, rejected) => {
-      this.dbFirestore.collection('usuarios').doc(cliente.usuario).get().subscribe((cliente) => {
-        console.log(cliente.data());
-
-        if (cliente.data().habilitado == true) {
-
-          resolve(cliente.data());
-        } else {
-          rejected("no");
-        }
-      })
-
-    })
-
-  }
-
   /*trae todos los pedidos*/
   traeroPedidos() {
     return this.dbFirestore.collection('pedidos').snapshotChanges();
   }
 
   async cambiarEstadoDePedido(p: any, estado: string) {
-
 
     return new Promise((resolve, rejected) => {
 
@@ -429,6 +410,24 @@ export class CloudFirestoreService {
       }).catch(() => {
         rejected("No se asignó")
       })
+    })
+
+  }
+
+  async verificarSiEstaHabilitado(cliente: any) {
+
+    return new Promise((resolve, rejected) => {
+      this.dbFirestore.collection('usuarios').doc(cliente.usuario).get().subscribe((cliente) => {
+        console.log(cliente.data());
+
+        if (cliente.data().habilitado == true) {
+
+          resolve(cliente.data());
+        } else {
+          rejected("no");
+        }
+      })
+
     })
 
   }

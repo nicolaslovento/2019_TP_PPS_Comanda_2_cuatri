@@ -33,12 +33,19 @@ export class Menu2Page implements OnInit {
   }
 
   juegos() {
-
+    this.router.navigateByUrl('juegos');
   }
 
   encuesta() {
+    this.router.navigateByUrl('encuesta');
+  }
 
+  confirmarPedido() {
+    this.serviceFirestore.cambiarEstadoDePedido(this.pedidos[0],'servidoConfirmado');
+  }
 
+  pedirCuenta() {
+    
   }
 
   irAtras() {
