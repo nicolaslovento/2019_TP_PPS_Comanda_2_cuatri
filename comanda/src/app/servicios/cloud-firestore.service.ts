@@ -150,6 +150,8 @@ export class CloudFirestoreService {
   //Cargar un pedido a la base de datos
   cargarPedido(pedidoNuevo: any) {
 
+    this.cambiarNumeroEstadoMesa(pedidoNuevo.mesa, "1")
+
     return new Promise((resolve, rejected) => {
 
       this.dbFirestore.collection("pedidos").doc(pedidoNuevo.cliente).set({
@@ -174,6 +176,23 @@ export class CloudFirestoreService {
         rejected(error);
       });
     })
+  }
+
+  /*cambia el estado de mesa y asigna usuario a la misma*/
+  async cambiarNumeroEstadoMesa(mesa, estado: string) {
+
+    return new Promise((resolve, rejected) => {
+
+      this.dbFirestore.collection("mesas").doc(mesa).update({
+        estado:estado
+
+      }).then(() => {
+        resolve("Se asignó")
+      }).catch(() => {
+        rejected("No se asignó")
+      })
+    })
+
   }
 
   //Carga una mesa a la bd, su id será el numero 
@@ -325,7 +344,6 @@ export class CloudFirestoreService {
       this.dbFirestore.collection("mesas").doc(mesa.qr).update({
         usuario: cliente.usuario,
         disponible: estado,
-        estado:"1"
 
       }).then(() => {
         resolve("Se asignó")

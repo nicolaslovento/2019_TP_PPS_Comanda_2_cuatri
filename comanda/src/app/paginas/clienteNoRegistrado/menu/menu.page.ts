@@ -13,6 +13,8 @@ import { CloudFirestoreService } from 'src/app/servicios/cloud-firestore.service
 export class MenuPage implements OnInit {
   mesasDisponibles = new Array();
   mesasNoDisponibles = new Array();
+  mesas = new Array();
+
   constructor(
     private router: Router,
     private scannerService: ScannerService,
@@ -22,6 +24,7 @@ export class MenuPage implements OnInit {
 
   ngOnInit() {
     this.cargarMesasDisponibles();
+    //this.cargarMesasOcupadas();
   }
 
 
@@ -48,15 +51,43 @@ export class MenuPage implements OnInit {
   }
 
 
-
-
-
   pedirMesa() {
     let mesaDisponible = false;
     let cliente = JSON.parse(localStorage.getItem("usuario"));
     let mesa = false;
     let tieneMesa = false;
     this.scannerService.iniciarScanner().then((qr: any) => {
+
+      /* Recorro todas las mesas ocupadas, si el qr coincide con alguna mesa ocupada y esa mesa
+       ocupada coincide con el usuario del local storage y el estado de esa mesa es = a 1 
+       entonces lo envío al cliente a menu2 donde puede ver su pedido, juegos, encuesta.
+       IMPORTANTÍSIMO: cuando el cliente haya pagado la cuenta acordarse de poner mesa.usuario = "",
+       mesa.estado = "" y mesa.ocupada=false */
+
+       this.cargarMesasOcupadas();
+
+       for (let i = 0; i < this.mesasNoDisponibles.length; i++) {
+
+        //alert("For: "+ i);
+
+        if (this.mesasNoDisponibles[i].qr == qr) {
+          //alert("El qr de la mesa no disponible coincide con el qr escaneado.");
+          //alert(this.mesasNoDisponibles[i].qr+" y qr escaneado:"+qr);
+          if (this.mesasNoDisponibles[i].usuario == cliente.usuario) {
+            //alert("Chequeo que el usuario de la mesa coincida con el del localstorage");
+            //alert(this.mesasNoDisponibles[i].usuario+" y local:"+cliente.usuario);
+            if (this.mesasNoDisponibles[i].estado == "1")
+            {
+              //alert("El estado de la mesa es igual a 1");
+              //alert(this.mesasNoDisponibles[i].estado);
+              this.router.navigateByUrl('menu2');
+            } else if(this.mesasNoDisponibles[i].estado == "") {
+              this.router.navigateByUrl('lista-productos');
+            }
+          }
+        }
+      }
+
 
       if (this.mesasDisponibles.length > 0) {
 

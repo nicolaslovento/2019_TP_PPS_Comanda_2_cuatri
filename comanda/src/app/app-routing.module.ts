@@ -34,6 +34,7 @@ const routes: Routes = [
   { path: 'menu-clienteNoRegistrado', loadChildren: './paginas/clienteNoRegistrado/menu/menu.module#MenuPageModule' },
   
   { path: 'lista-productos', loadChildren: './paginas/productos/lista-productos/lista-productos.module#ListaProductosPageModule' },
+  { path: 'menu2', loadChildren: './paginas/clienteNoRegistrado/menu2/menu2.module#Menu2PageModule' },
   
 
   

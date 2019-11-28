@@ -175,10 +175,15 @@ export class ListaProductosPage implements OnInit {
       propina: 0
 
     }
-    alert(pedidoNuevo);
+    //alert(pedidoNuevo);
     this.dbService.cargarPedido(pedidoNuevo).then(()=>{
       this.alertService.alertBienvenida("Realizando pedido..",2000).then(()=>{
-        this.router.navigateByUrl('menu-cliente');
+        if(cliente.perfil == "cliente") {
+          this.router.navigateByUrl('menu-cliente');
+        } else if(cliente.perfil == "clienteAnonimo") {
+          this.router.navigateByUrl('menu-clienteNoRegistrado');
+        }
+        
       });
     }).catch((error)=>{
       this.alertService.alertError(error);
