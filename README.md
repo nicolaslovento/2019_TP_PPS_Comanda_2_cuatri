@@ -7,7 +7,10 @@
 <b>Alta de clientes<br>
 Alta de productos<br>
 Lista de productos<br>
-Pedido de productos</b>
+Pedido de productos<br>
+Vista cliente del estado del pedido<br>
+Juegos<br>
+Encuesta cliente<br></b>
 
 
 
