@@ -39,6 +39,7 @@ const routes: Routes = [
   { path: 'juegos', loadChildren: './paginas/clienteNoRegistrado/juegos/juegos.module#JuegosPageModule' },
   { path: 'encuesta', loadChildren: './paginas/clienteNoRegistrado/encuesta/encuesta.module#EncuestaPageModule' },
 
+
   
 
   

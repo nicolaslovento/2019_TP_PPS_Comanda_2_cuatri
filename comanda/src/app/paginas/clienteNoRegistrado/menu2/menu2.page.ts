@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AlertControllerService } from 'src/app/servicios/alert-controller.service';
 import { CloudFirestoreService } from '../../../servicios/cloud-firestore.service';
+import { ScannerService } from 'src/app/servicios/scanner-dni.service';
 
 @Component({
   selector: 'app-menu2',
@@ -12,7 +14,9 @@ export class Menu2Page implements OnInit {
   pedidos = new Array();
 
   constructor(private router: Router,
-    private serviceFirestore: CloudFirestoreService) { }
+    private serviceFirestore: CloudFirestoreService,
+    private alertService:AlertControllerService,
+    private scannerService:ScannerService) { }
 
   ngOnInit() {
     this.cargarPedidos();
@@ -39,6 +43,16 @@ export class Menu2Page implements OnInit {
   encuesta() {
     this.router.navigateByUrl('encuesta');
   }
+
+  cargarPropina() {
+    this.scannerService.iniciarScanner().then((barcodeData:any)=>{
+      this.alertService.alertError("Propina actualizada!");
+      this.pedidos[0].propina=barcodeData.text;
+    }).catch((error)=>{
+      this.alertService.alertError("No se pudo leer el codigo QR");
+    });
+  }
+
 
   confirmarPedido() {
     this.serviceFirestore.cambiarEstadoDePedido(this.pedidos[0],'servidoConfirmado');

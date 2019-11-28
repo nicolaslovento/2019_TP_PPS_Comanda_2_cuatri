@@ -16,6 +16,7 @@ import { AngularFirestoreModule} from '@angular/fire/firestore';
 import { Camera } from '@ionic-native/camera/ngx';
 import { ZBar } from '@ionic-native/zbar/ngx';
 import { environment } from 'src/environments/environment';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 
 import { EmailComposer } from '@ionic-native/email-composer/ngx';
 
@@ -28,6 +29,7 @@ import { EmailComposer } from '@ionic-native/email-composer/ngx';
     SplashScreen,
     Camera,
     ZBar,
+    BarcodeScanner,
     EmailComposer,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
