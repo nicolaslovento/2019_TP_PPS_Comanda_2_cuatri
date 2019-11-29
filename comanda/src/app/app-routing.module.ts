@@ -37,7 +37,10 @@ const routes: Routes = [
   { path: 'lista-productos', loadChildren: './paginas/productos/lista-productos/lista-productos.module#ListaProductosPageModule' },
   { path: 'menu2', loadChildren: './paginas/clienteNoRegistrado/menu2/menu2.module#Menu2PageModule' },
   { path: 'juegos', loadChildren: './paginas/clienteNoRegistrado/juegos/juegos.module#JuegosPageModule' },
-  { path: 'encuesta', loadChildren: './paginas/clienteNoRegistrado/encuesta/encuesta.module#EncuestaPageModule' },
+  { path: 'encuesta', loadChildren: './paginas/clienteNoRegistrado/encuesta/encuesta.module#EncuestaPageModule' },  { path: 'juego-descuento', loadChildren: './paginas/clienteNoRegistrado/juego-descuento/juego-descuento.module#JuegoDescuentoPageModule' },
+  { path: 'juego-bebida', loadChildren: './paginas/clienteNoRegistrado/juego-bebida/juego-bebida.module#JuegoBebidaPageModule' },
+  { path: 'juego-postre', loadChildren: './paginas/clienteNoRegistrado/juego-postre/juego-postre.module#JuegoPostrePageModule' },
+
 
 
   

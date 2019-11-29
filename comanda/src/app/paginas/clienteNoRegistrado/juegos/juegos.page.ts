@@ -20,4 +20,16 @@ export class JuegosPage implements OnInit {
     return cliente.perfil;
   }
 
+  juegoDescuento() {
+    this.router.navigateByUrl("juego-descuento");
+  }
+
+  juegoBebida() {
+    this.router.navigateByUrl("juego-bebida");
+  }
+
+  juegoPostre() {
+    this.router.navigateByUrl("juego-postre");
+  }
+
 }
