@@ -11,7 +11,10 @@ import { AlertControllerService } from 'src/app/servicios/alert-controller.servi
 })
 export class EncuestaPage implements OnInit {
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 8dbd36bfcab060c6307f52f2fa65144c144582aa
   data = [
     {
       name: 'El servicio fue rápido.',

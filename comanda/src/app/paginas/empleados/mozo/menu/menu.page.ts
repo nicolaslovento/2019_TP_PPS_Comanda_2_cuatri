@@ -48,6 +48,19 @@ export class MenuPage implements OnInit {
     }
   }
 
+  cerrarPedido(p: any) {
+    
+    let cliente={usuario: ""};
+    let mesa={qr: p.mesa};
+  
+    this.serviceFirestore.cerrarPedido(p).then(() => {
+        this.serviceFirestore.cambiarEstadoMesa(cliente, mesa, true).then(() => {
+          this.serviceFirestore.cambiarNumeroEstadoMesa(p.mesa, "").then(() => {
+          })
+        })
+    })
+  }
+
   irAtras() {
     localStorage.clear();
     this.router.navigateByUrl('home');

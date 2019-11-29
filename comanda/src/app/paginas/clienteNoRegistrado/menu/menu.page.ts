@@ -116,7 +116,7 @@ export class MenuPage implements OnInit {
 
               this.serviceFirestore.cambiarEstadoMesa(cliente, mesa, false).then(() => {
 
-                this.alertService.alertMensajeConTiempo("Asignado mesa..", 2000).then(() => {
+                this.alertService.alertMensajeConTiempo("Asignando mesa..", 2000).then(() => {
 
                   this.serviceFirestore.habilitarClienteParaPedirMesa(cliente, true).then(() => {
                     //acá cambio estado de habilitado por false, porque ya está sentado en la mesa

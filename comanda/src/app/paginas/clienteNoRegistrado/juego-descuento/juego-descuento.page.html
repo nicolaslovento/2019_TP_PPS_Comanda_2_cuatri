@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-buttons slot="end">
+      <ion-button color="danger" (click)="this.router.navigateByUrl('')">
+        <ion-label>Cerrar<br>sesion</ion-label>
+        <ion-icon name="log-out"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-buttons slot="start">
+      
+      <ion-button  (click)="this.router.navigateByUrl('juegos')">
+        <ion-icon name="arrow-round-back"></ion-icon>
+      </ion-button>
+
+    </ion-buttons>
+    <ion-title align="center">Juego 10% Descuento</ion-title>
+
+</ion-toolbar>
+</ion-header>
+
+<ion-text align="center">Uno de estos cuatro botones contiene el descuento. ¡Suerte!</ion-text>
+
+
+<div class="content">
+  <ion-button class="btn-izq" [color]="dark" (click)="juego(1)">1</ion-button>
+  <ion-button class="btn-der" [color]="dark" (click)="juego(2)">2</ion-button>
+  <ion-button class="btn-izq" [color]="dark" (click)="juego(3)">3</ion-button>
+  <ion-button class="btn-der" [color]="dark" (click)="juego(4)">4</ion-button> 
+</div>
+
+
+<div *ngIf="this.gano==1"><ion-text align="center">Usted ganó un 10% de descuento.</ion-text></div>
+<div *ngIf="this.gano==2"><ion-text align="center">Seguí participando.</ion-text></div>
