@@ -3,7 +3,7 @@ import { CamaraService } from 'src/app/servicios/camara.service';
 import { AlertControllerService } from 'src/app/servicios/alert-controller.service';
 import { CloudFirestoreService } from 'src/app/servicios/cloud-firestore.service';
 import { Router } from '@angular/router';
-import { ScannerService } from 'src/app/servicios/scanner.service';
+import { ScannerService } from 'src/app/servicios/scanner-dni.service';
 
 @Component({
   selector: 'app-alta',
@@ -240,11 +240,17 @@ export class AltaPage implements OnInit {
 
   leerDniConQr(){
 
-    this.scannerService.iniciarScanner().then((codigoQR:any)=>{
-      alert(codigoQR);
-      this.dni=codigoQR;
+    this.scannerService.iniciarScanner().then((barcodeData:any)=>{
+      var datos = barcodeData.text.split("@")
+      if(datos[4] == null){
+        this.alertService.alertError("El código no es de DNI");
+        return;
+      }
+      this.nombre=datos[2];
+      this.apellido=datos[1];
+      this.dni=datos[4];
     }).catch((error)=>{
-      this.alertService.alertError("No se puedo leer el codigo QR");
+      this.alertService.alertError("No se pudo leer el codigo QR");
     });
   }
   

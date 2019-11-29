@@ -42,19 +42,23 @@
             <br>
             <ion-text>
             <div *ngIf="p.estado == 'recibidoMozo'"> El mozo recibió su pedido</div>
-            <div *ngIf="p.estado == 'recibidoEmpleado'"> Están cocinando su pedido</div>
+            <div *ngIf="p.estado == 'recibidoEmpleado'"> Están cocinando su pedido. Tiempo estimado: {{this.tiempoMax}} minutos</div>
             <div *ngIf="p.estado == 'terminado'"> Terminaron de hacer su pedido</div>
             <div *ngIf="p.estado == 'servido'"> Le han servido el pedido</div>
             <div *ngIf="p.estado == 'servidoConfirmado'"> Ha confirmado que le sirvieron el pedido</div>
             <div *ngIf="p.estado == 'cuentaPedida'"> Ha pedido la cuenta</div>
             </ion-text><br>
-            <!--<ion-text> Tiempo restante: </ion-text><br>--> <!-- *nfIf= pedido en estado entregado no mostrar-->
             <!-- Hacer funcion que calcule cual es la comida pedida que mas tarda -->
             <div *ngIf="p.estado == 'servido'">
             <ion-item class="estados">
               <ion-button class="botonEncuesta" color="success" (click)="confirmarPedido()">Confirmar Pedido</ion-button>
               <!-- Hacer un ngIf si el pedido ya está entregado entonces que aparezca la opción pedir cuenta -->
             </ion-item>
+            </div>
+            <div *ngIf="p.estado == 'servidoConfirmado'">
+              <ion-item class="estados">
+                <ion-button class="botonEncuesta" color="success" (click)="cargarPropina(p)">Elegir propina</ion-button>
+              </ion-item>
             </div>
             <div *ngIf="p.estado == 'servidoConfirmado'">
               <ion-item class="estados">
@@ -116,7 +120,35 @@
         </div>
       </div>
 
-    </div>
+
+      <div>
+        <ion-item>
+          <ion-title align="start">Propina</ion-title>
+        </ion-item>
+        <ion-item>
+          <ion-text>{{p.propina}}%</ion-text>
+        </ion-item>
+      </div>
+
+      <div>
+        <ion-item>
+          <ion-title align="start">Descuento</ion-title>
+        </ion-item>
+        <ion-item>
+          <ion-text>{{p.descuento}}%</ion-text>
+        </ion-item>
+      </div>
+
+      <div>
+        <ion-item>
+          <ion-title align="start">TOTAL</ion-title>
+        </ion-item>
+        <ion-item>
+          <ion-text>${{p.total}}</ion-text>
+        </ion-item>
+      </div>
+    
+      </div>  
     </div>
   
 </ion-list>

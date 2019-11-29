@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CloudFirestoreService } from '../../../servicios/cloud-firestore.service';
+import { ScannerService } from 'src/app/servicios/scanner.service';
+import { AlertControllerService } from 'src/app/servicios/alert-controller.service';
 
 @Component({
   selector: 'app-menu2',
@@ -10,12 +12,15 @@ import { CloudFirestoreService } from '../../../servicios/cloud-firestore.servic
 export class Menu2Page implements OnInit {
 
   pedidos = new Array();
+  tiempoMax = "1";
 
   constructor(private router: Router,
-    private serviceFirestore: CloudFirestoreService) { }
+    private serviceFirestore: CloudFirestoreService,
+    private alertService:AlertControllerService,
+    private scannerService:ScannerService) { }
 
   ngOnInit() {
-    this.cargarPedidos();
+    this.cargarPedidos()
     console.log(this.pedidos);
   }
 
@@ -27,9 +32,37 @@ export class Menu2Page implements OnInit {
       pedidos.map((pedido: any) => {
         if(pedido.payload.doc.data().cliente == cliente.usuario) {
           this.pedidos.push(pedido.payload.doc.data());
+          this.calcularTiempoMax(pedido.payload.doc.data());
         }
       })
-    })
+    })   
+  }
+
+  cargarPropina(p:any) {
+    this.scannerService.iniciarScanner().then((qr:any)=>{
+      let propina=qr.split("propina-");
+               
+        this.serviceFirestore.cambiarPropina(p, propina[1]).then(() => {
+
+          this.serviceFirestore.actualizarTotal(p, propina[1], p.descuento);
+          
+          this.alertService.alertError("Propina actualizada: "+propina[1]+"%");    
+        })
+    }).catch((error)=>{
+      this.alertService.alertError("No se pudo leer el codigo QR");
+    });
+  }
+
+  calcularTiempoMax(p:any){
+    console.log(p);
+    p.pedidoPlatos.forEach(plato=>{
+      if(plato.tiempoElaboracion>=this.tiempoMax)
+          this.tiempoMax=plato.tiempoElaboracion;
+    });
+    p.pedidoPostres.forEach(postre=>{
+      if(postre.tiempoElaboracion>=this.tiempoMax)
+          this.tiempoMax=postre.tiempoElaboracion;
+    });         
   }
 
   juegos() {
