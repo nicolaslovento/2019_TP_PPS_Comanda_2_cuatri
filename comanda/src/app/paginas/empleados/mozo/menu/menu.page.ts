@@ -53,12 +53,10 @@ export class MenuPage implements OnInit {
     let cliente={usuario: ""};
   
     this.serviceFirestore.cerrarPedido(p).then(() => {
-      this.serviceFirestore.actualizarTotal(p).then(() => {
         this.serviceFirestore.cambiarEstadoMesa(cliente, p.mesa, true).then(() => {
           this.serviceFirestore.cambiarNumeroEstadoMesa(p.mesa, "").then(() => {
           })
         })
-      })
     })
   }
 
