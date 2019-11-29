@@ -7,7 +7,10 @@
 <b>Alta de clientes<br>
 Alta de productos<br>
 Lista de productos<br>
-Pedido de productos</b>
+Pedido de productos<br>
+Vista cliente del estado del pedido<br>
+Juegos<br>
+Encuesta cliente<br></b>
 
 
 
@@ -42,3 +45,8 @@ Lector de DNI<br></b>
 <br>
 <h3>Diagrama código Qr (mesa)</h3>
 <img src="https://github.com/maxineiner/2019_TP_PPS_Comanda_2_cuatri/blob/master/Diagrama_QR_MESA.jpg"/>
+
+<br>
+<br>
+<h3>QRs:</h3>
+<img src="https://github.com/nicolaslovento/2019_TP_PPS_Comanda_2_cuatri/blob/master/qrsComanda.png"/>
