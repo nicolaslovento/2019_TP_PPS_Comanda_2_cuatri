@@ -489,6 +489,7 @@ export class CloudFirestoreService {
     console.log(p.cliente);
     return new Promise((resolve, rejected) => {
 
+      localStorage.setItem("hizoEncuesta", "no");
       this.dbFirestore.collection("pedidos").doc(p.cliente).update({
 
         estado: "finalizado"
