@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AlertControllerService } from 'src/app/servicios/alert-controller.service';
 import { CloudFirestoreService } from '../../../servicios/cloud-firestore.service';
-import { ScannerService } from 'src/app/servicios/scanner-dni.service';
+import { ScannerService } from 'src/app/servicios/scanner.service';
+import { AlertControllerService } from 'src/app/servicios/alert-controller.service';
 
 @Component({
   selector: 'app-menu2',
@@ -36,6 +36,21 @@ export class Menu2Page implements OnInit {
     })
   }
 
+  cargarPropina(p:any) {
+    this.scannerService.iniciarScanner().then((qr:any)=>{
+      let propina=qr.split("propina-");
+               
+        this.serviceFirestore.cambiarPropina(p, propina[1]).then(() => {
+
+          this.serviceFirestore.actualizarTotal(p, propina[1], p.descuento);
+          
+          this.alertService.alertError("Propina actualizada: "+propina[1]+"%");    
+        })
+    }).catch((error)=>{
+      this.alertService.alertError("No se pudo leer el codigo QR");
+    });
+  }
+
   juegos() {
     this.router.navigateByUrl('juegos');
   }
@@ -43,16 +58,6 @@ export class Menu2Page implements OnInit {
   encuesta() {
     this.router.navigateByUrl('encuesta');
   }
-
-  cargarPropina() {
-    this.scannerService.iniciarScanner().then((barcodeData:any)=>{
-      this.alertService.alertError("Propina actualizada!");
-      this.pedidos[0].propina=barcodeData.text;
-    }).catch((error)=>{
-      this.alertService.alertError("No se pudo leer el codigo QR");
-    });
-  }
-
 
   confirmarPedido() {
     this.serviceFirestore.cambiarEstadoDePedido(this.pedidos[0],'servidoConfirmado');

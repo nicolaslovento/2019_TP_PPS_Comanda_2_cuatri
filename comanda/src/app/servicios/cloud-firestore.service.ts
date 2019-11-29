@@ -414,6 +414,72 @@ export class CloudFirestoreService {
 
   }
 
+  async cambiarPropina(p: any, propina: string) {
+
+    return new Promise((resolve, rejected) => {
+
+      this.dbFirestore.collection("pedidos").doc(p.cliente).update({
+
+        propina: propina
+
+      }).then(() => {
+        resolve("Se actualizó")
+      }).catch(() => {
+        rejected("No se actualizó")
+      })
+    })
+
+  }
+
+  /*Acá recibe la propina y el descuento para hacerlo en el mismo paso en el que 
+  se actualizan, porque en el pedido están los viejos*/
+  async actualizarTotal(p: any, propina, descuento) {
+    
+    let total=0;
+    p.pedidoBebidas.forEach(pedido => {
+      total += pedido.precio;
+    })
+    p.pedidoPlatos.forEach(pedido => {
+      total += pedido.precio;
+    })
+    p.pedidoPostres.forEach(pedido => {
+      total += pedido.precio;
+    })
+
+    return new Promise((resolve, rejected) => {
+
+      this.dbFirestore.collection("pedidos").doc(p.cliente).update({
+
+        total: total-(descuento*total/100)+(propina*total/100)
+
+      }).then(() => {
+        resolve("Se actualizó")
+      }).catch(() => {
+        rejected("No se actualizó")
+      })
+    })
+
+  }
+
+  async cerrarPedido(p: any) {
+
+    return new Promise((resolve, rejected) => {
+
+      this.dbFirestore.collection("pedidos").doc(p.cliente).update({
+
+        cliente: "",
+        estado: "finalizado"
+
+
+      }).then(() => {
+        resolve("Se asignó")
+      }).catch(() => {
+        rejected("No se asignó")
+      })
+    })
+
+  }
+
   async verificarSiEstaHabilitado(cliente: any) {
 
     return new Promise((resolve, rejected) => {

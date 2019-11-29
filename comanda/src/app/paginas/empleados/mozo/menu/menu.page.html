@@ -22,7 +22,7 @@
       
 
     <div *ngFor="let p of pedidos" class="pedido">
-      <div *ngIf="p.estado!='servido'">
+      <div *ngIf="p.estado!='servido'&& p.estado!='finalizado'">
           <ion-item>
               <ion-title align="center">{{p.mesa}}</ion-title>
             </ion-item>
@@ -85,6 +85,7 @@
           <div *ngIf="p.estado=='recibidoEmpleado'"><ion-label><b>Esperando confirmación de cocina..</b><ion-spinner name="bubbles" id="spinner" ></ion-spinner></ion-label></div>
           <div *ngIf="p.estado=='enPreparacion'"><ion-label><b>Pedido preparandose..</b><ion-spinner name="bubbles" id="spinner" ></ion-spinner></ion-label></div>
           <div *ngIf="p.estado=='terminado'"><ion-button color="success" (click)="modificarPedido(p,2)">Servir plato</ion-button></div>
+          <div *ngIf="p.estado=='cuentaPedida'"><ion-button color="danger" (click)="cerrarPedido(p)">Cerrar cuenta</ion-button></div>
       </ion-item>
 
     </div>
