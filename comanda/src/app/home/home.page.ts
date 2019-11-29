@@ -16,8 +16,7 @@ export class HomePage {
   error="";
 
   ngOnInit() {
-    
-    
+    localStorage.clear();
   }
 
   constructor(

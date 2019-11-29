@@ -454,6 +454,23 @@ export class CloudFirestoreService {
 
   }
 
+  async cambiarDescuento(p: any, descuento: number) {
+
+    return new Promise((resolve, rejected) => {
+
+      this.dbFirestore.collection("pedidos").doc(p.cliente).update({
+
+        descuento: descuento
+
+      }).then(() => {
+        resolve("Se actualizó")
+      }).catch(() => {
+        rejected("No se actualizó")
+      })
+    })
+
+  }
+
   /*Acá recibe la propina y el descuento para hacerlo en el mismo paso en el que 
   se actualizan, porque en el pedido están los viejos*/
   async actualizarTotal(p: any, propina, descuento) {

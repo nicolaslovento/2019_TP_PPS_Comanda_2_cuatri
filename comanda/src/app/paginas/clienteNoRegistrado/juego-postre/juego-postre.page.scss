@@ -1,0 +1,29 @@
+.content{
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.btn-izq{
+    position: relative;
+    float:inline-start;
+    width: 42%;
+    height: 30%;
+    float:left;
+    margin-top: 3%;
+    margin-left: 5%;
+    padding:10px;
+    font-size: 10px;
+}
+
+.btn-der{
+    position: relative;
+    width: 42%;
+    height: 30%;
+    float:right;
+    margin-top: 3%;
+    margin-left: 5%;
+    margin-right: 5%;
+    padding:10px;
+    font-size: 10px;
+}
