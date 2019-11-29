@@ -147,6 +147,29 @@ export class CloudFirestoreService {
     })
   }
 
+  //Carga un producto a la Base de Datos 
+  cargarEncuesta(encuestaNueva: any) {
+    return new Promise((resolve, rejected) => {
+
+      this.dbFirestore.collection("encuestas").doc(Date.now().toString()).set({
+
+        calificacion:encuestaNueva.calificacion,
+        comentarios:encuestaNueva.comentarios,
+        foto1:encuestaNueva.foto1,
+        foto2:encuestaNueva.foto2,
+        foto3:encuestaNueva.foto3,
+        nosEligen:encuestaNueva.nosEligen,
+        opciones:encuestaNueva.opciones,
+        gustos:encuestaNueva.gustos,
+
+      }).then(() => {
+        resolve(encuestaNueva);
+      }).catch((error) => {
+        rejected(error);
+      });
+    })
+  }
+
   //Cargar un pedido a la base de datos
   cargarPedido(pedidoNuevo: any) {
 

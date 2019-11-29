@@ -1,9 +1,119 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>encuesta</ion-title>
-  </ion-toolbar>
-</ion-header>
+     <ion-header>
+      <ion-toolbar color="dark">
+        <ion-buttons slot="end">
+          <ion-button color="danger" (click)="this.router.navigateByUrl('')">
+            <ion-label>Cerrar<br>sesion</ion-label>
+            <ion-icon name="log-out"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+  
+        <ion-buttons slot="start">
+  
+          <ion-button  (click)="this.router.navigateByUrl('menu2')">
+              <ion-icon name="arrow-round-back"></ion-icon>
+           </ion-button>
+    
+        </ion-buttons>
+        <ion-title align="center">Encuesta</ion-title>
 
-<ion-content>
+    </ion-toolbar>
+  </ion-header>
 
-</ion-content>
+  <ion-content overflow-scroll="false" class="encuest">
+
+      <ion-item>
+          <ion-text >Calificación general:</ion-text><br>
+          <ion-range min="0" max="10" color="secondary" [(ngModel)]="calificacion" name="clasificacion">
+            <ion-label slot="start">0</ion-label>
+            <ion-label slot="end">10</ion-label>
+          </ion-range>
+      </ion-item>      
+      
+      <ion-item class="input">
+          <ion-text >Comentarios: </ion-text>
+        <ion-input clear-input="true" type="text" [(ngModel)]="comentarios" name="comentarios"></ion-input>
+      </ion-item>
+      
+      <ion-item class="input">
+        <ion-label>Foto 1:</ion-label>
+        <ion-button shape="round" fill="outline" expand="block" (click)="tomarFoto1()" color="dark">Tomar foto</ion-button>
+        <div *ngIf="this.foto1">
+          <img src={{this.foto1}} width="60px" height="38px">
+        </div>
+      </ion-item>
+      
+      <ion-item class="input">
+        <ion-label>Foto 2:</ion-label>
+        <ion-button shape="round" fill="outline" expand="block" (click)="tomarFoto2()" color="dark">Tomar foto</ion-button>
+        <div *ngIf="this.foto2">
+          <img src={{this.foto2}} width="60px" height="38px">
+        </div>
+      </ion-item>
+      
+      <ion-item class="input">
+        <ion-label>Foto 3:</ion-label>
+        <ion-button shape="round" fill="outline" expand="block" (click)="tomarFoto3()" color="dark">Tomar foto</ion-button>
+        <div *ngIf="this.foto3">
+          <img src={{this.foto3}} width="60px" height="38px">
+        </div>
+      </ion-item>
+      
+      <ion-item class="input">Volvería a elegirnos: 
+      <ion-select [(ngModel)]="nosEligen" name="nosEligen" value="si" placeholder="Si" okText="Aceptar" cancelText="Cancelar">
+          <ion-select-option value="si" checked>Si</ion-select-option>
+          <ion-select-option value="no">No</ion-select-option>
+          <ion-select-option value="talVez">Tal vez</ion-select-option>
+      </ion-select>
+      </ion-item>
+
+      <ion-item class="input">
+      <ion-text>Seleccione la/las que correspondan:</ion-text><br>
+          <ion-list>
+              <ion-item *ngFor="let entry of data" (click)="onClick(entry)">
+                <ion-label>{{entry.name}}</ion-label>
+                <ion-checkbox slot="end" [(ngModel)]="entry.selected"></ion-checkbox>
+              </ion-item>
+            </ion-list>
+      </ion-item>
+
+      <ion-item class="input">
+
+          <ion-radio-group [(ngModel)]="gustos" name="gustos">
+            
+            <ion-text>¿Qué le gustaron mas?</ion-text> 
+        
+            <ion-item >
+              <ion-label>Los platos</ion-label>
+              <ion-radio slot="start" value="platos" checked></ion-radio>
+            </ion-item>
+        
+            <ion-item>
+              <ion-label>Las bebidas</ion-label>
+              <ion-radio slot="start" value="bebidas"></ion-radio>
+            </ion-item>
+        
+            <ion-item>
+              <ion-label>Los postres</ion-label>
+              <ion-radio slot="start" value="postres"></ion-radio>
+            </ion-item>
+
+            <ion-item>
+              <ion-label>En ese orden</ion-label>
+              <ion-radio slot="start" value="enEseOrden"></ion-radio>
+            </ion-item>
+          </ion-radio-group>
+     
+      </ion-item>
+      
+
+
+    </ion-content>
+
+    
+    <ion-toolbar color="dark" class="barraInferior">
+      <ion-buttons slot="end">
+        <ion-button class="botonEncuesta" color="success" (click)="enviarEncuesta()">Enviar</ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+
+  

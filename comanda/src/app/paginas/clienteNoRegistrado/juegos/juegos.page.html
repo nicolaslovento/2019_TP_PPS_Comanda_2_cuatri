@@ -1,9 +1,25 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>juegos</ion-title>
-  </ion-toolbar>
-</ion-header>
+<div class="screen">
+    <ion-header>
+      <ion-toolbar color="dark">
+        <ion-buttons slot="end">
+          <ion-button color="danger" (click)="this.router.navigateByUrl('')">
+            <ion-label>Cerrar<br>sesion</ion-label>
+            <ion-icon name="log-out"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+  
+        <ion-buttons slot="start">
+          
+          <ion-button  (click)="this.router.navigateByUrl('menu2')">
+            <ion-icon name="arrow-round-back"></ion-icon>
+          </ion-button>
+    
+        </ion-buttons>
+        <ion-title align="center">Juegos</ion-title>
 
-<ion-content>
+    </ion-toolbar>
+  </ion-header>
 
-</ion-content>
+  
+  
+  </div>
