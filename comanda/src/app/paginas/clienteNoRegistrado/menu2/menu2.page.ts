@@ -1,13 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CloudFirestoreService } from '../../../servicios/cloud-firestore.service';
-<<<<<<< HEAD
-import { AlertControllerService } from 'src/app/servicios/alert-controller.service';
-
-=======
 import { ScannerService } from 'src/app/servicios/scanner.service';
 import { AlertControllerService } from 'src/app/servicios/alert-controller.service';
->>>>>>> 8dbd36bfcab060c6307f52f2fa65144c144582aa
 
 @Component({
   selector: 'app-menu2',
@@ -20,14 +15,9 @@ export class Menu2Page implements OnInit {
   tiempoMax = "1";
 
   constructor(private router: Router,
-<<<<<<< HEAD
-    private alertService: AlertControllerService,
-    private serviceFirestore: CloudFirestoreService) { }
-=======
     private serviceFirestore: CloudFirestoreService,
     private alertService:AlertControllerService,
     private scannerService:ScannerService) { }
->>>>>>> 8dbd36bfcab060c6307f52f2fa65144c144582aa
 
   ngOnInit() {
     this.cargarPedidos()
