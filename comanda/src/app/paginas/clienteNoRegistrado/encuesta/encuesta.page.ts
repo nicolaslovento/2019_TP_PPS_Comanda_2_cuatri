@@ -11,9 +11,6 @@ import { AlertControllerService } from 'src/app/servicios/alert-controller.servi
 })
 export class EncuestaPage implements OnInit {
 
-  aaa(g) {
-    console.log(g);
-  }
 
   data = [
     {
@@ -94,33 +91,34 @@ export class EncuestaPage implements OnInit {
 
 
   enviarEncuesta() {
+   
+      this.prepararOpciones();
 
-    this.prepararOpciones();
+      if(this.gustos == undefined) {
+        this.gustos = "";
+      }
 
-    if(this.gustos == undefined) {
-      this.gustos = "";
-    }
+      let encuestaNueva= {
+        calificacion:this.calificacion,
+        comentarios:this.comentarios,
+        foto1:this.foto1,
+        foto2:this.foto2,
+        foto3:this.foto3,
+        nosEligen:this.nosEligen,
+        opciones:this.opcionesFinal,
+        gustos:this.gustos,
+      }
 
-    let encuestaNueva= {
-      calificacion:this.calificacion,
-      comentarios:this.comentarios,
-      foto1:this.foto1,
-      foto2:this.foto2,
-      foto3:this.foto3,
-      nosEligen:this.nosEligen,
-      opciones:this.opcionesFinal,
-      gustos:this.gustos,
-    }
-
-    this.serviceFirestore.cargarEncuesta(encuestaNueva).then(()=>{
-      this.alertService.alertComun("Enviando encuesta..",2000).then(()=>{
+      this.serviceFirestore.cargarEncuesta(encuestaNueva).then(()=>{
+        this.alertService.alertComun("Enviando encuesta..",2000).then(()=>{
+          localStorage.setItem("hizoEncuesta", "si");
+        });
+      }).catch((error)=>{
+        this.alertService.alertError(error);
+        console.log(error);
       });
-    }).catch((error)=>{
-      this.alertService.alertError(error);
-      console.log(error);
-    });
 
-    this.router.navigateByUrl('menu2');
+      this.router.navigateByUrl('menu2');   
 
   }
 

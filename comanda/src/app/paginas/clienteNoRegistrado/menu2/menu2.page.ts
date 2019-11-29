@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CloudFirestoreService } from '../../../servicios/cloud-firestore.service';
+import { AlertControllerService } from 'src/app/servicios/alert-controller.service';
+
 
 @Component({
   selector: 'app-menu2',
@@ -12,6 +14,7 @@ export class Menu2Page implements OnInit {
   pedidos = new Array();
 
   constructor(private router: Router,
+    private alertService: AlertControllerService,
     private serviceFirestore: CloudFirestoreService) { }
 
   ngOnInit() {
@@ -37,7 +40,19 @@ export class Menu2Page implements OnInit {
   }
 
   encuesta() {
-    this.router.navigateByUrl('encuesta');
+    let cliente = JSON.parse(localStorage.getItem("usuario"));
+    if(localStorage.getItem("hizoEncuesta") != "si") {
+      if(this.pedidos.length>=1)
+      {
+        if(cliente.usuario == this.pedidos[0].cliente) {
+          this.router.navigateByUrl('encuesta');
+        }
+      } else {
+        this.alertService.alertError("Usted no está habilitado para completar la encuesta.");
+      }
+    } else {
+      this.alertService.alertError("Usted ya ha completado la encuesta");
+    }
   }
 
   confirmarPedido() {
