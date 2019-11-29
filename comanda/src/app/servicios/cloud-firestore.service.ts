@@ -183,7 +183,7 @@ export class CloudFirestoreService {
 
     return new Promise((resolve, rejected) => {
 
-      this.dbFirestore.collection("mesas").doc(mesa).update({
+      this.dbFirestore.collection("mesas").doc(mesa.qr).update({
         estado:estado
 
       }).then(() => {
@@ -348,7 +348,7 @@ export class CloudFirestoreService {
       }).then(() => {
         resolve("Se asignó")
       }).catch(() => {
-        rejected("No se asignó")
+        rejected("No se asignó disponibilidad")
       })
     })
 
@@ -463,18 +463,17 @@ export class CloudFirestoreService {
 
   async cerrarPedido(p: any) {
 
+    console.log(p.cliente);
     return new Promise((resolve, rejected) => {
 
       this.dbFirestore.collection("pedidos").doc(p.cliente).update({
 
-        cliente: "",
         estado: "finalizado"
 
-
       }).then(() => {
-        resolve("Se asignó")
+        resolve("Se cerró")
       }).catch(() => {
-        rejected("No se asignó")
+        rejected("No se cerró")
       })
     })
 

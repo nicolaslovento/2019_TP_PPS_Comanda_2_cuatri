@@ -12,6 +12,7 @@ import { AlertControllerService } from 'src/app/servicios/alert-controller.servi
 export class Menu2Page implements OnInit {
 
   pedidos = new Array();
+  tiempoMax = "1";
 
   constructor(private router: Router,
     private serviceFirestore: CloudFirestoreService,
@@ -19,7 +20,7 @@ export class Menu2Page implements OnInit {
     private scannerService:ScannerService) { }
 
   ngOnInit() {
-    this.cargarPedidos();
+    this.cargarPedidos()
     console.log(this.pedidos);
   }
 
@@ -31,9 +32,10 @@ export class Menu2Page implements OnInit {
       pedidos.map((pedido: any) => {
         if(pedido.payload.doc.data().cliente == cliente.usuario) {
           this.pedidos.push(pedido.payload.doc.data());
+          this.calcularTiempoMax(pedido.payload.doc.data());
         }
       })
-    })
+    })   
   }
 
   cargarPropina(p:any) {
@@ -49,6 +51,18 @@ export class Menu2Page implements OnInit {
     }).catch((error)=>{
       this.alertService.alertError("No se pudo leer el codigo QR");
     });
+  }
+
+  calcularTiempoMax(p:any){
+    console.log(p);
+    p.pedidoPlatos.forEach(plato=>{
+      if(plato.tiempoElaboracion>=this.tiempoMax)
+          this.tiempoMax=plato.tiempoElaboracion;
+    });
+    p.pedidoPostres.forEach(postre=>{
+      if(postre.tiempoElaboracion>=this.tiempoMax)
+          this.tiempoMax=postre.tiempoElaboracion;
+    });         
   }
 
   juegos() {
