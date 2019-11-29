@@ -173,7 +173,7 @@ export class CloudFirestoreService {
   //Cargar un pedido a la base de datos
   cargarPedido(pedidoNuevo: any) {
 
-    this.cambiarNumeroEstadoMesa(pedidoNuevo.mesa, "1")
+    this.cambiarNumeroEstadoMesa(pedidoNuevo.mesa, "1");
 
     return new Promise((resolve, rejected) => {
 
@@ -206,7 +206,7 @@ export class CloudFirestoreService {
 
     return new Promise((resolve, rejected) => {
 
-      this.dbFirestore.collection("mesas").doc(mesa.qr).update({
+      this.dbFirestore.collection("mesas").doc(mesa).update({
         estado:estado
 
       }).then(() => {

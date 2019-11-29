@@ -55,7 +55,7 @@ export class MenuPage implements OnInit {
   
     this.serviceFirestore.cerrarPedido(p).then(() => {
         this.serviceFirestore.cambiarEstadoMesa(cliente, mesa, true).then(() => {
-          this.serviceFirestore.cambiarNumeroEstadoMesa(mesa, "").then(() => {
+          this.serviceFirestore.cambiarNumeroEstadoMesa(p.mesa, "").then(() => {
           })
         })
     })
