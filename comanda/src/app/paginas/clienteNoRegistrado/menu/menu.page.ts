@@ -135,10 +135,10 @@ export class MenuPage implements OnInit {
             });
 
           } else {
-            this.alertService.alertError("La mesa está ocupada.");
+            this.alertService.alertError("Código inválido ó Mesa ocupada.");
           }
         } else {
-          this.alertService.alertError("usted ya tiene una mesa asignada.");
+          //this.alertService.alertError("usted ya tiene una mesa asignada.");
         }
       } else {
         this.alertService.alertError("La mesas están ocupadas.");
@@ -153,8 +153,12 @@ export class MenuPage implements OnInit {
   ingresarAlLocal() {
     let cliente = JSON.parse(localStorage.getItem('usuario'));
     this.scannerService.iniciarScanner().then((codigoQR: any) => {
-      alert(codigoQR);
+      
       this.serviceFirestore.verificarIngresoAlRestaurante(codigoQR).then((msj) => {
+
+        if(codigoQR!="la-comanda") {
+          this.alertService.alertError("QR inválido.");
+        }
 
         this.alertService.alertBienvenida("Ingresando al local..", 2000).then(() => {
           this.serviceFirestore.cambiarEstadoDeEspera(cliente, true).then(() => {

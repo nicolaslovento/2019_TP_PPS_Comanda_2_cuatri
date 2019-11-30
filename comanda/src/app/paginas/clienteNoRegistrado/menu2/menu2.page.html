@@ -120,6 +120,7 @@
         </div>
       </div>
 
+      <div *ngIf="p.estado == 'cuentaPedida' || p.estado == 'finalizado'">
 
       <div>
         <ion-item>
@@ -141,12 +142,23 @@
 
       <div>
         <ion-item>
+          <ion-title align="start">Total Comida</ion-title>
+        </ion-item>
+        <ion-item>
+          <ion-text>${{this.total}}</ion-text>
+        </ion-item>
+      </div>
+      
+      <div>
+        <ion-item>
           <ion-title align="start">TOTAL</ion-title>
         </ion-item>
         <ion-item>
           <ion-text>${{p.total}}</ion-text>
         </ion-item>
       </div>
+
+    </div>
     
       </div>  
     </div>

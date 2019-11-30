@@ -36,9 +36,9 @@ export class AltaPage implements OnInit {
 
 
   tomarFoto(){
-    let  usuarioActual=JSON.parse(localStorage.getItem('usuario'));
-    let nombreFoto=usuarioActual.dni+"-"+(new Date()).getTime();
-    this.cameraService.tomarFoto(nombreFoto).then(fotoSacada=>{
+    
+    let nombreFoto=new Date().getTime();
+    this.cameraService.tomarFoto(nombreFoto.toString()).then(fotoSacada=>{
       this.foto=fotoSacada;
     });
     
@@ -56,7 +56,9 @@ export class AltaPage implements OnInit {
           correo:this.correo,
           foto:this.foto,
           clave:this.clave,
-          estado:"noAprobado"
+          estado:"noAprobado",
+          esperandoMesa: false,
+          habilitado: false,
           
         }
         this.serviceFirestore.cargarCliente(usuarioNuevo).then(()=>{

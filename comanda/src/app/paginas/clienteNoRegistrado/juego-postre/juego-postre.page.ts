@@ -46,6 +46,7 @@ export class JuegoPostrePage implements OnInit {
       if(numeroRnd == numero) {
         this.gano = 1;
         this.serviceFirestore.cambiarDescuento(this.pedidos[0], this.calcularDescuento()+this.pedidos[0].descuento);
+        this.serviceFirestore.actualizarTotal(this.pedidos[0], this.pedidos[0], 10+this.pedidos[0].descuento);
       } else {
         this.gano = 2;
       }

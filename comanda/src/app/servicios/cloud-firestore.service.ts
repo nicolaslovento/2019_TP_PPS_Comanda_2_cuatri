@@ -2,12 +2,14 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { reject } from 'q';
 import { resolve } from 'url';
+import { AlertControllerService } from './alert-controller.service';
+
 @Injectable({
   providedIn: 'root'
 })
 export class CloudFirestoreService {
 
-  constructor(private dbFirestore: AngularFirestore) { }
+  constructor(private dbFirestore: AngularFirestore, private alertCont: AlertControllerService) { }
 
   /*
   Verifica que el usuario exista
@@ -18,37 +20,44 @@ export class CloudFirestoreService {
     return new Promise((resolve, rejected) => {
       this.dbFirestore.collection('usuarios').get().subscribe((user) => {
         user.docs.map((user: any) => {
-          //console.log(usuario+" "+clave);
-          if (user.data().usuario == usuario && user.data().clave == clave) {
-            existe = true;
-            if (user.data().perfil == "cliente") {
+          
+          
+          if (user.data().usuario == usuario){
 
-              if (user.data().estado == 'aprobado') {
-                resolve(user.data());
-              } else {
-                if (user.data().estado == 'noAprobado') {
+            if(user.data().clave == clave){
 
-                  rejected("Tu solicitud de registro todavía no fue aprobada");
+              if (user.data().perfil == "cliente") {
+
+                if (user.data().estado == 'aprobado') {
+                  resolve(user.data());
                 } else {
-
-                  rejected("Tu solicitud de registro ha sido rechazada");
+                  if (user.data().estado == 'noAprobado') {
+  
+                    rejected("Tu solicitud de registro todavía no fue aprobada");
+                  } else {
+  
+                    rejected("Tu solicitud de registro ha sido rechazada");
+                  }
                 }
+  
+              } else {
+                resolve(user.data());
+  
               }
-
-            } else {
-              resolve(user.data());
-
+            }else{
+              rejected("Usuario o contraseña incorrecta");
             }
           }
+            
+            
+          
 
 
         });
 
       })
 
-      /*if(!existe){
-        rejected("Usuario o contraseña incorrecta");
-      }*/
+      
 
     })
   }
@@ -94,6 +103,7 @@ export class CloudFirestoreService {
         estado: usuarioNuevo.estado,
         esperandoMesa: usuarioNuevo.esperandoMesa,
         habilitado: usuarioNuevo.habilitado,
+        usuario: usuarioNuevo.usuario,
 
       }).then(() => {
         resolve(usuarioNuevo);
@@ -280,6 +290,10 @@ export class CloudFirestoreService {
     return new Promise((resolve, rejected) => {
       this.dbFirestore.collection('restaurante').get().subscribe((res) => {
         res.docs.map((res: any) => {
+          
+        /*if(qr!="la-comanda") {
+          this.alertCont.alertError("QR inválido.");
+        }*/
 
           if (res.data().qr == qr) {
 
