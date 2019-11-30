@@ -36,9 +36,9 @@ export class AltaPage implements OnInit {
 
 
   tomarFoto(){
-    let  usuarioActual=JSON.parse(localStorage.getItem('usuario'));
-    let nombreFoto=usuarioActual.dni+"-"+(new Date()).getTime();
-    this.cameraService.tomarFoto(nombreFoto).then(fotoSacada=>{
+    
+    let nombreFoto=new Date().getTime();
+    this.cameraService.tomarFoto(nombreFoto.toString()).then(fotoSacada=>{
       this.foto=fotoSacada;
     });
     
