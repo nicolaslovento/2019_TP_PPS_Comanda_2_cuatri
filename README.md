@@ -33,7 +33,11 @@ Manejo del pedido desde el mozo hasta que le llega al cliente.<br></b>
 <h3>Tareas:</h3>
 
 <b>Alta de mesa<br>
-Lector de DNI<br></b>
+Lector de DNI<br>
+Pedido de cuenta<br>
+Pedido de propina<br>
+Tiempo estimado pedido<br>
+Calcular total pedido<br></b>
 
 
 <h2>Objetivos:</h2><br> 
