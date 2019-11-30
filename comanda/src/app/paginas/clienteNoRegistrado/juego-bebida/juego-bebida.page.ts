@@ -31,6 +31,7 @@ export class JuegoBebidaPage implements OnInit {
   }
 
   ngOnInit() {
+    this.gano = 0;
     this.obtenerPedido();
   }
 

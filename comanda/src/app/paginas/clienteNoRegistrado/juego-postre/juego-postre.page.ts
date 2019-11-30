@@ -32,6 +32,8 @@ export class JuegoPostrePage implements OnInit {
   }
 
   ngOnInit() {
+    this.gano = 0;
+    this.obtenerPedido();
   }
 
   juego(numero) {
