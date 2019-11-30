@@ -13,6 +13,7 @@ export class Menu2Page implements OnInit {
 
   pedidos = new Array();
   tiempoMax = "1";
+  total = 0;
 
   constructor(private router: Router,
     private serviceFirestore: CloudFirestoreService,
@@ -33,6 +34,18 @@ export class Menu2Page implements OnInit {
         if(pedido.payload.doc.data().cliente == cliente.usuario) {
           this.pedidos.push(pedido.payload.doc.data());
           this.calcularTiempoMax(pedido.payload.doc.data());
+          
+          this.total = 0;
+          pedido.payload.doc.data().pedidoBebidas.forEach(pedido => {
+            this.total += pedido.precio;
+          })
+          pedido.payload.doc.data().pedidoPlatos.forEach(pedido => {
+            this.total += pedido.precio;
+          })
+          pedido.payload.doc.data().pedidoPostres.forEach(pedido => {
+            this.total += pedido.precio;
+    })
+
         }
       })
     })   
