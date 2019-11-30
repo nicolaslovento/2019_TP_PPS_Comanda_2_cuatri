@@ -135,7 +135,7 @@ export class MenuPage implements OnInit {
             });
 
           } else {
-            this.alertService.alertError("La mesa está ocupada.");
+            this.alertService.alertError("Código inválido ó Mesa ocupada.");
           }
         } else {
           this.alertService.alertError("usted ya tiene una mesa asignada.");
@@ -155,6 +155,10 @@ export class MenuPage implements OnInit {
     this.scannerService.iniciarScanner().then((codigoQR: any) => {
       
       this.serviceFirestore.verificarIngresoAlRestaurante(codigoQR).then((msj) => {
+
+        if(codigoQR!="la-comanda") {
+          this.alertService.alertError("QR inválido.");
+        }
 
         this.alertService.alertBienvenida("Ingresando al local..", 2000).then(() => {
           this.serviceFirestore.cambiarEstadoDeEspera(cliente, true).then(() => {
