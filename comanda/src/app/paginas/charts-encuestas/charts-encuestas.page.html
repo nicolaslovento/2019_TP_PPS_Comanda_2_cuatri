@@ -1,15 +1,40 @@
-
 <ion-header>
-  <ion-toolbar>
-    <ion-title>chartsEncuestas</ion-title>
+    <ion-toolbar color="dark">
+      <ion-buttons slot="end">
+        <ion-button color="danger" (click)="this.router.navigateByUrl('')">
+          <ion-label>Cerrar<br>sesion</ion-label>
+          <ion-icon name="log-out"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+
+      <ion-buttons slot="start">
+
+        <ion-button  (click)="this.router.navigateByUrl('menu2')">
+            <ion-icon name="arrow-round-back"></ion-icon>
+         </ion-button>
+  
+      </ion-buttons>
+      <ion-title align="center">Encuesta</ion-title>
+
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <div clas="ion-padding">
-    <ion-button color="dark" expand="full" (click)="DrawPieChart()">Draw Pie Chart</ion-button>
+    <ion-button color="dark" expand="full" (click)="DrawPieChart()">Ver Resultados</ion-button>
   </div>
+  
+  <div align="center" id="div_pie4">
+
+    </div>
   <div id="div_pie">
 
   </div>
+  <div id="div_pie2">
+
+    </div>
+    <div id="div_pie3">
+
+      </div>
+      
 </ion-content>

@@ -117,7 +117,7 @@ export class EncuestaPage implements OnInit {
         console.log(error);
       });
 
-      this.router.navigateByUrl('menu2');   
+      this.router.navigateByUrl('charts-encuestas');   
 
   }
 
