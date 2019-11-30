@@ -34,7 +34,7 @@ Manejo del pedido desde el mozo hasta que le llega al cliente.<br></b>
 
 <b>Alta de mesa<br>
 Lector de DNI<br>
-Pedido de cuenta<br>
+Pedido y cerrado de cuenta<br>
 Pedido de propina<br>
 Tiempo estimado pedido<br>
 Calcular total pedido<br></b>
