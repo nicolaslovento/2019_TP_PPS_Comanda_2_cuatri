@@ -144,7 +144,9 @@ export class ListaProductosPage implements OnInit {
   }
   
   hacerPedido() {
-    let cliente=JSON.parse(localStorage.getItem('usuario'));
+
+    if(this.pedidos.length>=1) {
+      let cliente=JSON.parse(localStorage.getItem('usuario'));
     let mesaActual:string = "";
 
     
@@ -189,6 +191,10 @@ export class ListaProductosPage implements OnInit {
       this.alertService.alertError(error);
       console.log(error);
     });
+    } else {
+      this.alertService.alertError("El pedido está vacío.");
+    }
+    
   }
 
   agregarProducto(cantidad, producto) {

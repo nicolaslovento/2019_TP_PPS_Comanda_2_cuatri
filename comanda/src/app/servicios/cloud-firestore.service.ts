@@ -2,12 +2,14 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { reject } from 'q';
 import { resolve } from 'url';
+import { AlertControllerService } from './alert-controller.service';
+
 @Injectable({
   providedIn: 'root'
 })
 export class CloudFirestoreService {
 
-  constructor(private dbFirestore: AngularFirestore) { }
+  constructor(private dbFirestore: AngularFirestore, private alertCont: AlertControllerService) { }
 
   /*
   Verifica que el usuario exista
@@ -286,6 +288,10 @@ export class CloudFirestoreService {
     return new Promise((resolve, rejected) => {
       this.dbFirestore.collection('restaurante').get().subscribe((res) => {
         res.docs.map((res: any) => {
+          
+        /*if(qr!="la-comanda") {
+          this.alertCont.alertError("QR inválido.");
+        }*/
 
           if (res.data().qr == qr) {
 

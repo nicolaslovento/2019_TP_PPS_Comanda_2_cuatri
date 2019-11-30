@@ -153,10 +153,6 @@ export class MenuPage implements OnInit {
       
       this.serviceFirestore.verificarIngresoAlRestaurante(codigoQR).then((msj) => {
 
-        if(codigoQR!="la-comanda") {
-          this.alertService.alertError("QR inválido.");
-        }
-
         this.alertService.alertBienvenida("Ingresando al local..", 2000).then(() => {
           this.serviceFirestore.cambiarEstadoDeEspera(cliente, true).then(() => {
             this.alertService.alertBienvenida("Poniendo en lista de espera..", 2000).then(() => {
