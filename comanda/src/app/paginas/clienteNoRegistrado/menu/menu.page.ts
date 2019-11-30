@@ -153,7 +153,7 @@ export class MenuPage implements OnInit {
   ingresarAlLocal() {
     let cliente = JSON.parse(localStorage.getItem('usuario'));
     this.scannerService.iniciarScanner().then((codigoQR: any) => {
-      alert(codigoQR);
+      
       this.serviceFirestore.verificarIngresoAlRestaurante(codigoQR).then((msj) => {
 
         this.alertService.alertBienvenida("Ingresando al local..", 2000).then(() => {

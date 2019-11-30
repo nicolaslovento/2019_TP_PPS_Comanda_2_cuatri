@@ -40,6 +40,7 @@ export class AprobarClientesPage implements OnInit {
   }
 
   aprobarCliente(cliente:any){
+    console.log(cliente);
     this.dbService.darEstadoACliente(cliente,'aprobado').then((msj)=>{
       this.enviarCorreo(cliente.correo,true);
     });
