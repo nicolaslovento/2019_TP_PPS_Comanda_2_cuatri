@@ -11,7 +11,6 @@ Pedido de productos Inicio 09/11 - Fin 16/11<br>
 Vista cliente del estado del pedido Inicio 16/11 - Fin 23/11<br>
 Juegos Inicio 23/11 - Fin 29/11<br>
 Encuesta cliente Inicio 23/11 - Fin 29/11<br>
-<br>
 Estadísticas encuestas Inicio 23/11 - Fin 29/11<br></b>
 
 
