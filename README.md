@@ -22,10 +22,10 @@ Encuesta cliente<br></b>
 Login<br>
 Alta de dueño/supervisor<br>
 Alta de empleados<br>
-Verificación de pre-registro de clientes.(tarea de envío de email delegada a Facundo) Inicio 11/11 - Fin 13/11<br>
-Ingreso al local de cliente. Inicio 11/11 - Fin 13/11<br>
-Asignación de mesas. Inicio 11/11 - Fin 13/11<br></b>
-
+Verificación de pre-registro de clientes<br>
+Ingreso al local de cliente. <br>
+Asignación de mesas. <br></b>
+Manejo del pedido desde el mozo hasta que le llega al cliente.<br>
 
 
 <h2>Rey, Facundo. (Branch: Facundo)</h2>
