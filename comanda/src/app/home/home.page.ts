@@ -158,6 +158,7 @@ export class HomePage {
       this.dbFirestore.verificarUsuario(this.usuario,this.clave).then((usuario)=>{
         console.log(usuario);
         this.alertService.alertBienvenida("Espere..",3000).then(()=>{
+          localStorage.clear();
           localStorage.setItem('usuario',JSON.stringify(usuario));//guarda usuario en ls
           this.redireccionar(usuario);//aca hay que redireccionar a la pagina del usuario
         });
