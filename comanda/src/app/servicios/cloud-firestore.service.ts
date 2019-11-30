@@ -101,6 +101,7 @@ export class CloudFirestoreService {
         estado: usuarioNuevo.estado,
         esperandoMesa: usuarioNuevo.esperandoMesa,
         habilitado: usuarioNuevo.habilitado,
+        usuario: usuarioNuevo.usuario,
 
       }).then(() => {
         resolve(usuarioNuevo);
