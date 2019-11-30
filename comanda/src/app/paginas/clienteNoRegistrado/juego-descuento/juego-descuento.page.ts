@@ -19,6 +19,7 @@ export class JuegoDescuentoPage implements OnInit {
   pedidos = new Array();
 
   ngOnInit() {
+    this.gano = 0;
     this.obtenerPedido();
   }
 

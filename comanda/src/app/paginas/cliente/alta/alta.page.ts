@@ -56,7 +56,9 @@ export class AltaPage implements OnInit {
           correo:this.correo,
           foto:this.foto,
           clave:this.clave,
-          estado:"noAprobado"
+          estado:"noAprobado",
+          esperandoMesa: false,
+          habilitado: false,
           
         }
         this.serviceFirestore.cargarCliente(usuarioNuevo).then(()=>{
