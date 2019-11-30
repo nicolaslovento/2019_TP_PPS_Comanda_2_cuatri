@@ -76,7 +76,6 @@ export class CloudFirestoreService {
         foto: usuarioNuevo.foto,
         perfil: usuarioNuevo.perfil,
         clave: usuarioNuevo.clave,
-        usuario: usuarioNuevo.usuario,
 
       }).then(() => {
         resolve(usuarioNuevo);
@@ -102,6 +101,7 @@ export class CloudFirestoreService {
         estado: usuarioNuevo.estado,
         esperandoMesa: usuarioNuevo.esperandoMesa,
         habilitado: usuarioNuevo.habilitado,
+        usuario: usuarioNuevo.usuario,
 
       }).then(() => {
         resolve(usuarioNuevo);
