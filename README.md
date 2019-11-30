@@ -1,5 +1,5 @@
 <h1>Trabajo práctico de Práctica Profesional "La comanda"</h1>
-
+<h1>Grupo: Todorojo</h1>
 <h2>Famiglietti, Franco Agustín. (Branch: Franco)</h2>
 
 <h3>Tareas:</h3>
@@ -19,31 +19,33 @@ Estadísticas encuestas Inicio 23/11 - Fin 29/11<br></b>
 
 <h3>Tareas:</h3>
 
-<b>Icono y splash<br>
-Login<br>
-Alta de dueño/supervisor<br>
-Alta de empleados<br>
-Verificación de pre-registro de clientes<br>
-Ingreso al local de cliente. <br>
-Asignación de mesas. <br>
-Manejo del pedido desde el mozo hasta que le llega al cliente.<br></b>
+<b>Icono y splash Inicio 02/11 - Fin 09/11<br>
+Login Inicio 02/11 - Fin 09/11<br>
+Alta de dueño/supervisor Inicio 02/11 - Fin 09/11<br>
+Alta de empleados Inicio 02/11 - Fin 09/11<br>
+Verificación de pre-registro de clientes Inicio 09/11 - Fin 16/11<br>
+Ingreso al local de cliente. Inicio 09/11 - Fin 16/11<br>
+Asignación de mesas. Inicio 23/11 - Fin 29/11<br>
+Manejo del pedido desde el mozo hasta que le llega al cliente. Inicio 23/11 - Fin 29/11<br></b>
 
 
 <h2>Rey, Facundo. (Branch: Facundo)</h2>
 
 <h3>Tareas:</h3>
 
-<b>Alta de mesa<br>
-Lector de DNI<br>
-Pedido y cerrado de cuenta<br>
-Pedido de propina<br>
-Tiempo estimado pedido<br>
-Calcular total pedido<br></b>
+<b>Alta de mesa Inicio 02/11 - Fin 09/11<br>
+Lector de DNI Inicio 09/11 - Fin 16/11<br>
+Pedido y cerrado de cuenta Inicio 23/11 - Fin 29/11<br>
+Pedido de propina Inicio 23/11 - Fin 29/11<br>
+Tiempo estimado pedido Inicio 23/11 - Fin 29/11<br>
+Calcular total pedido Inicio 23/11 - Fin 29/11<br></b>
 
 
 <h2>Objetivos:</h2><br> 
 <b>09/11: Icono, splash, login y todas las altas terminadas.<br>
-16/11: Hasta hacer pedido (punto 7)</b>
+16/11: Hasta hacer pedido (punto 7)
+23/11: Corrección de errores.
+30/11: Proyecto terminado hasta el punto 12 más los puntos 13 y 14 (alta de productos),22(juegos),23(alta de empleados) y 24(alta de mesas).</b>
 
 
 <br>
