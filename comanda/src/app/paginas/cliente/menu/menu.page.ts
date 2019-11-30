@@ -54,6 +54,7 @@ export class MenuPage implements OnInit {
     let cliente = JSON.parse(localStorage.getItem("usuario"));
     let mesa = false;
     let tieneMesa = false;
+    let sentado=false;
     this.scannerService.iniciarScanner().then((qr: any) => {
 
       /* Recorro todas las mesas ocupadas, si el qr coincide con alguna mesa ocupada y esa mesa
@@ -78,6 +79,7 @@ export class MenuPage implements OnInit {
             {
               //alert("El estado de la mesa es igual a 1");
               //alert(this.mesasNoDisponibles[i].estado);
+              sentado=true;
               this.router.navigateByUrl('menu2');
             } else if(this.mesasNoDisponibles[i].estado == "") {
               this.router.navigateByUrl('lista-productos');
@@ -136,7 +138,10 @@ export class MenuPage implements OnInit {
             this.alertService.alertError("Código inválido ó Mesa ocupada.");
           }
         } else {
-          //this.alertService.alertError("Usted ya tiene una mesa asignada.");
+          if(!sentado){
+            this.alertService.alertError("Usted ya tiene una mesa asignada.");
+          }
+          
         }
       } else {
         this.alertService.alertError("La mesas están ocupadas.");
