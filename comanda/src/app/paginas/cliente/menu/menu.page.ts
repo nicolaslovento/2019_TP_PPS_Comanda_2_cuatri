@@ -136,7 +136,7 @@ export class MenuPage implements OnInit {
             this.alertService.alertError("Código inválido ó Mesa ocupada.");
           }
         } else {
-          this.alertService.alertError("Usted ya tiene una mesa asignada.");
+          //this.alertService.alertError("Usted ya tiene una mesa asignada.");
         }
       } else {
         this.alertService.alertError("La mesas están ocupadas.");

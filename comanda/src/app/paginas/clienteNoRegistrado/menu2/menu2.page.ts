@@ -79,7 +79,12 @@ export class Menu2Page implements OnInit {
   }
 
   juegos() {
-    this.router.navigateByUrl('juegos');
+    if(this.pedidos[0].estado != 'cuentaPedida' && this.pedidos[0].estado != 'finalizado') {
+      this.router.navigateByUrl('juegos');
+    } else {
+      this.alertService.alertError("Ya no puede");
+    }
+    
   }
 
   encuesta() {

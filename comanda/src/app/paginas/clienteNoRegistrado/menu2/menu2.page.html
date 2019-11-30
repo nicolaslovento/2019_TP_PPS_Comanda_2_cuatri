@@ -120,7 +120,7 @@
         </div>
       </div>
 
-      <div *ngIf="this.pedidos[0].estado == 'cuentaPedida' || this.pedidos[0].estado == 'finalizado'">
+      <div *ngIf="p.estado == 'cuentaPedida' || p.estado == 'finalizado'">
 
       <div>
         <ion-item>
@@ -168,14 +168,10 @@
 
 <ion-footer>
   <ion-toolbar color="dark" class="barraInferior">
-
-  <div *ngIf="this.pedidos[0].estado != 'cuentaPedida' && this.pedidos[0].estado != 'finalizado'">
     
     <ion-buttons slot="start">
         <ion-button class="botonJuegos" color="success" (click)="juegos()">Juegos</ion-button>
     </ion-buttons>
-
-  </div>
    
     <ion-buttons slot="end">
       <ion-button class="botonEncuesta" color="success" (click)="encuesta()">Encuesta</ion-button>
