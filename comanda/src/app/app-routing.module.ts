@@ -40,6 +40,7 @@ const routes: Routes = [
   { path: 'encuesta', loadChildren: './paginas/clienteNoRegistrado/encuesta/encuesta.module#EncuestaPageModule' },  { path: 'juego-descuento', loadChildren: './paginas/clienteNoRegistrado/juego-descuento/juego-descuento.module#JuegoDescuentoPageModule' },
   { path: 'juego-bebida', loadChildren: './paginas/clienteNoRegistrado/juego-bebida/juego-bebida.module#JuegoBebidaPageModule' },
   { path: 'juego-postre', loadChildren: './paginas/clienteNoRegistrado/juego-postre/juego-postre.module#JuegoPostrePageModule' },
+  { path: 'charts-encuestas', loadChildren: './paginas/charts-encuestas/charts-encuestas.module#ChartsEncuestasPageModule' },
 
 
 

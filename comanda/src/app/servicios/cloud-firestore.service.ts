@@ -248,7 +248,9 @@ export class CloudFirestoreService {
     return this.dbFirestore.collection('productos').snapshotChanges();
   }
 
-
+  traerEncuestas() {
+    return this.dbFirestore.collection('encuestas').snapshotChanges();
+  }
 
 
   //cambia estado de cliente 
