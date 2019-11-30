@@ -4,13 +4,15 @@
 
 <h3>Tareas:</h3>
 
-<b>Alta de clientes<br>
-Alta de productos<br>
-Lista de productos<br>
-Pedido de productos<br>
-Vista cliente del estado del pedido<br>
-Juegos<br>
-Encuesta cliente<br></b>
+<b>Alta de clientes Inicio 02/11 - Fin 09/11<br>
+Alta de productos Inicio 02/11 - Fin 09/11<br>
+Lista de productos Inicio 09/11 - Fin 16/11<br>
+Pedido de productos Inicio 09/11 - Fin 16/11<br>
+Vista cliente del estado del pedido Inicio 16/11 - Fin 23/11<br>
+Juegos Inicio 23/11 - Fin 29/11<br>
+Encuesta cliente Inicio 23/11 - Fin 29/11<br>
+<br>
+Estadísticas encuestas Inicio 23/11 - Fin 29/11<br></b>
 
 
 
