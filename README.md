@@ -24,8 +24,8 @@ Alta de dueño/supervisor<br>
 Alta de empleados<br>
 Verificación de pre-registro de clientes<br>
 Ingreso al local de cliente. <br>
-Asignación de mesas. <br></b>
-Manejo del pedido desde el mozo hasta que le llega al cliente.<br>
+Asignación de mesas. <br>
+Manejo del pedido desde el mozo hasta que le llega al cliente.<br></b>
 
 
 <h2>Rey, Facundo. (Branch: Facundo)</h2>
